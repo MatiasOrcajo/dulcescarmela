@@ -1,9 +1,11 @@
 @extends('adminlte::page')
 
+<link rel="stylesheet" href="{{asset('css/admin/homeSliders.css')}}">
+
 @section('title', 'Home Sliders')
 
 @section('content_header')
-    <h1>Home Slider</h1>
+    <h1>Imagenes del slider</h1>
 @stop
 
 @section('content')
@@ -11,21 +13,50 @@
 
 <div class="container-fluid">
     <div class="row">
-        @forelse ($sliders as $slider)
-            <div class="col-md-6">
+        <div class="col-12 d-flex flex-wrap">
+            @forelse ($sliders as $slider)
+            <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <img src="{{asset($slider->image)}}" alt="">
                     </div>
+                    <div class="card-body">
+                        <h5>Texto: {{$slider->text}}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <h5>Orden: {{$slider->order}}</h5>
+                    </div>
                 </div>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">
+                    Eliminar
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar">
+                    Editar
+                </button>
+                {{-- <a href="{{route('admin.editarSlider', $slider->id)}}">
+                    <div class="btn btn-primary">Editar</div>
+                </a> --}}
+
+
+
+
+                {{-- modal para editar --}}
+                
+                @include('admin.layouts.modalEditarSlider')
+
+                {{-- modal para eliminar --}}
+                
+                @include('admin.layouts.modalEliminarSlider')
+
             </div>
-        @empty
-             <h3>No se han encontrado sliders</h3>
-        @endforelse
+            @empty
+                <p>No se han encontrado sliders</p>
+            @endforelse
+        </div>
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary my-5" data-toggle="modal" data-target="#exampleModal">
         Agregar Slider
     </button>
 

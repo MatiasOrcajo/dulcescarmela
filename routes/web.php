@@ -30,6 +30,10 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('/home-slider', 'AdminController@homeSlider')->name('admin.homeSlider');
 
             Route::post('/agregar-slider', 'AdminController@subirSlider')->name('admin.subirSlider');
+
+            Route::post('/home-slider/{id}/editar', 'AdminController@editarSlider')->name('admin.editarSlider');
+
+            Route::delete('/home-slider/{id}/eliminar', 'AdminController@eliminarSlider')->name('admin.eliminarSlider');
         });
 
 });

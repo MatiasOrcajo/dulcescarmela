@@ -41,4 +41,29 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function editarSlider (Request $request, Home_Slider $id)
+    {
+        $slider = Home_Slider::find($id)->first();
+
+        $imagen = $request->file('imagen')->store('public/images');
+        $url = Storage::url($imagen);
+
+        $slider->image = $url;
+        $slider->text = $request->texto;
+        $slider->order = $request->orden;
+
+        $slider->save();
+
+        return redirect()->back();
+    }
+
+    public function eliminarSlider (Home_Slider $id)
+    {
+        $slider = Home_Slider::find($id)->first();
+
+        $slider->delete();
+
+        return redirect()->back();
+    }
 }

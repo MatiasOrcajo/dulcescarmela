@@ -1,0 +1,34 @@
+.contenedor-slider-admin .card{
+    max-height: 600px;
+    min-height: 350px;
+    max-width: 525px;
+}
+
+.contenedor-slider-admin .card img{
+    width: 100%;
+    height: 230px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ESTILOS PARA ARREGLAR EL ADMIN */
+
+body:not(.layout-fixed) .main-sidebar{
+    height: inherit !important;
+    min-height: 100% !important;
+    position: fixed !important;
+    top: 0 !important;
+}
+
+.content-wrapper{
+    height: auto !important;
+}
