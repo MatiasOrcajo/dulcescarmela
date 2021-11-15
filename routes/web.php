@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +24,15 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::group(['prefix' => 'admin'], function(){
             
-            Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
+            Route::get('/dashboard', 'Admin\AdminController@index')->name('admin.dashboard');
     
-            Route::get('/home-slider', 'AdminController@homeSlider')->name('admin.homeSlider');
+            Route::get('/home-slider', 'Admin\AdminController@homeSlider')->name('admin.homeSlider');
 
-            Route::post('/agregar-slider', 'AdminController@subirSlider')->name('admin.subirSlider');
+            Route::post('/agregar-slider', 'Admin\AdminController@subirSlider')->name('admin.subirSlider');
 
-            Route::post('/home-slider/{id}/editar', 'AdminController@editarSlider')->name('admin.editarSlider');
+            Route::post('/home-slider/{id}/editar', 'Admin\AdminController@editarSlider')->name('admin.editarSlider');
 
-            Route::delete('/home-slider/{id}/eliminar', 'AdminController@eliminarSlider')->name('admin.eliminarSlider');
+            Route::delete('/home-slider/{id}/eliminar', 'Admin\AdminController@eliminarSlider')->name('admin.eliminarSlider');
         });
 
 });
