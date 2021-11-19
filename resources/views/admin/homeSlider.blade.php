@@ -27,10 +27,10 @@
                         <h5>Orden: {{$slider->order}}</h5>
                     </div>
                 </div>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar{{$slider->id}}">
                     Eliminar
                 </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar{{$slider->id}}">
                     Editar
                 </button>
                 {{-- <a href="{{route('admin.editarSlider', $slider->id)}}">
