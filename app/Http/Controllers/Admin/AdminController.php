@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
-use App\Models\{Home_Slider};
+use App\Models\{Home_Slider, Nosotra};
 
 class AdminController extends Controller
 {
@@ -27,7 +27,7 @@ class AdminController extends Controller
 
     
     
-    public function subirSlider(Request $request)
+    public function addSlider(Request $request)
     {
         $imagen = $request->file('imagen')->store('public/images');
         $url = Storage::url($imagen);
@@ -43,10 +43,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function editarSlider (Request $request, Home_Slider $id)
+    public function editSlider (Request $request, Home_Slider $slider)
     {
-        $slider = Home_Slider::find($id)->first();
-
         $imagen = $request->file('imagen')->store('public/images');
         $url = Storage::url($imagen);
 
@@ -59,12 +57,31 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function eliminarSlider (Home_Slider $id)
+    public function deleteSlider (Home_Slider $slider)
     {
-        $slider = Home_Slider::find($id)->first();
-
         $slider->delete();
 
         return redirect()->back();
     }
+
+    public function nosotras()
+    {
+        $images = Nosotra::all();
+        return view('admin.nosotras', compact('images'));
+    }
+
+    public function addToNosotras(Request $request)
+    {
+        $image = $request->file('imagen')->store('public/images');
+        $url = Storage::url($imagen);
+
+        $nosotras = new Nosotra;
+        $nosotras->image = $url;
+        $nosotras->text = $request->texto;
+
+        $nosotras->save();
+        
+        return redirect()->back();
+    }
+
 }

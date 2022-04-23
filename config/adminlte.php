@@ -243,6 +243,11 @@ return [
                     'text' => 'Slider home',
                     'url'  => '/admin/home-slider',
                     'icon' => 'far fa-fw fa-images',
+                ],
+                [
+                    'text' => 'Nosotras',
+                    'url' => '/admin/nosotras',
+                    'icon' => 'far fa-fw fa-users-gear'
                 ]
             ]
         ],

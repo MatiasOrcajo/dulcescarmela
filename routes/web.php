@@ -25,14 +25,15 @@ Route::group(['middleware' => ['auth']], function() {
         Route::group(['prefix' => 'admin'], function(){
             
             Route::get('/dashboard', 'Admin\AdminController@index')->name('admin.dashboard');
-    
+
+            // sliders
             Route::get('/home-slider', 'Admin\AdminController@homeSlider')->name('admin.homeSlider');
+            Route::post('/agregar-slider', 'Admin\AdminController@addSlider')->name('admin.subirSlider');
+            Route::post('/home-slider/{slider}/editar', 'Admin\AdminController@editSlider')->name('admin.editarSlider');
+            Route::delete('/home-slider/{slider}/eliminar', 'Admin\AdminController@deleteSlider')->name('admin.eliminarSlider');
 
-            Route::post('/agregar-slider', 'Admin\AdminController@subirSlider')->name('admin.subirSlider');
-
-            Route::post('/home-slider/{id}/editar', 'Admin\AdminController@editarSlider')->name('admin.editarSlider');
-
-            Route::delete('/home-slider/{id}/eliminar', 'Admin\AdminController@eliminarSlider')->name('admin.eliminarSlider');
+            // nosotras
+            Route::get('nosotras', 'Admin\AdminController@nosotras')->name('admin.nosotras');
         });
 
 });
