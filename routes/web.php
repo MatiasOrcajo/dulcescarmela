@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function() {
 
             // nosotras
             Route::get('nosotras', 'Admin\AdminController@nosotras')->name('admin.nosotras');
+            Route::post('/nosotras/add', 'Admin\AdminController@addToNosotras')->name('admin.nosotras.add');
+            Route::delete('/nosotras/delete', 'Admin\AdminController@deleteNosotrasImage')->name('admin.nosotras.delete');
         });
 
 });

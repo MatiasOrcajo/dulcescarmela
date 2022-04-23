@@ -18,57 +18,65 @@
             <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">
                     <div class="card-header">
-                        <img src="" alt="">
+                        <img src="{{asset($image->image)}}" alt="" style="max-height: 800px; width: auto;">
                     </div>
                     <div class="card-body">
-                        Activo: 
+                        {!!$image->text!!}
+                    </div>
+                    <div class="card-footer">
+                        Activo: {{$image->active}}
                     </div>
                 </div>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">
+                <button type="button" id="delete_image" data="{{$image->id}}" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">
                     Eliminar
                 </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar{{$loop->iteration}}">
                     Editar
                 </button>
             </div>
 
-            {{-- modal --}}
-
-            <div class="modal fade" id="modalEditar{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+            <!-- Modal -->
+            <div class="modal fade" id="modalEditar{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditarLabel">Editar Slider</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <h5 class="modal-title" id="exampleModalLabel"><strong>Subir Imagen</strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{route('admin.editarSlider', $slider->id)}}" method="POST" enctype="multipart/form-data">
-                                {{-- @method('PUT') --}}
+                            <form id="add_image_form" action="{{route('admin.nosotras.add')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
-                                    <label for="orden">Orden</label>
-                                    <input type="text" id="orden" class="form-control" name="orden" value="{{$slider->order}}">
-                                </div>
+                                <input type="hidden" name="edit" value="{{$image->id}}">
                                 <div class="form-group">
                                     <label for="texto">Texto</label>
-                                    <input type="text" id="texto" class="form-control" name="texto" value="{{$slider->text}}">
+                                    <textarea type="text" class="text" class="form-control" name="texto" cols="30" rows="30">
+                                        {!!$image->text!!}
+                                    </textarea>
                                 </div>
                                 <div class="form-group mt-5">
-                                    <img src="{{asset($slider->image)}}" alt="" style="height: 150px; width: auto;" class="mb-4">
                                     <input type="file" name="imagen">
                                 </div>
-        
+                                <div class="form-group mt-5">
+                                    <label for="visible">Visible:</label>
+                                    <select name="active" id="">
+                                        <option value="Si" {{$image->active == App\Models\Constants::IMAGE_IS_ACTIVE ? 'selected' : ''}}>Si</option>
+                                        <option value="No" {{$image->active == App\Models\Constants::IMAGE_IS_INACTIVE ? 'selected' : ''}}>No</option>
+                                    </select>
+                                </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                    <button id="guardar_cambios" type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
+
+            
             @empty
                 <p>No se han encontrado imagenes</p>
             @endforelse
@@ -91,18 +99,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('admin.subirSlider')}}" method="POST" enctype="multipart/form-data">
+                    <form id="add_image_form" action="{{route('admin.nosotras.add')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="texto">Texto</label>
-                            <textarea type="text" id="texto" class="form-control" name="texto" cols="10" rows="20"></textarea>
+                            <textarea type="text" class="text" class="form-control" name="texto" cols="30" rows="30"></textarea>
                         </div>
                         <div class="form-group mt-5">
                             <input type="file" name="imagen">
                         </div>
                         <div class="form-group mt-5">
                             <label for="visible">Visible:</label>
-                            <select name="" id="">
+                            <select name="active" id="">
                                 <option value="Si">Si</option>
                                 <option value="No">No</option>
                             </select>
@@ -110,7 +118,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <button id="guardar_cambios" type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -124,13 +132,89 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+
+    <style>
+        .swal2-styled.swal2-confirm,
+        .swal2-styled.swal2-cancel{
+            background: none !important
+        }
+    </style>
+  
 @stop
 
 @section('js')
 <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 <script>
-    ClassicEditor
-        .create(document.getElementById('texto'),
+
+
+// eliminar imagen
+    document.querySelectorAll('#delete_image').forEach(el => {
+        el.addEventListener('click', function(){
+            let id = el.getAttribute('data');
+            let route = '{{route('admin.nosotras.delete')}}'
+            
+            Swal.fire({
+                title: '<strong>¿Segura de que deseas eliminar la imagen?</strong>',
+                icon: 'question',
+                showCloseButton: true,
+                showCancelButton: true,
+                focusConfirm: false,
+                confirmButtonText:
+                    '<button id="delete_button" class="btn btn-danger w-100 h-100">Si</button>',
+                cancelButtonText:
+                    '<button id="" class="btn btn-primary w-100 h-100">No</button>',
+            })
+
+            document.getElementById('delete_button').addEventListener('click', function(){
+                $.ajax({
+                    url: route,
+                    type: "DELETE",
+                    datatype: "json",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        id: id,
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            // title: 'Oops...',
+                            confirmButtonText:
+                                '<button id="delete_button" class="btn btn-success w-100 h-100">OK</button>',
+                            title: '<strong>Imagen eliminada</strong>',
+                            // footer: '<a href="">Why do I have this issue?</a>'
+                        })
+                        .then(function(){
+                            location.reload();
+                        })
+                    },
+                })
+            })
+
+        })
+    });
+
+// disparar alerta cuando se sube la imagen
+    document.getElementById('add_image_form').addEventListener('submit', function(e)
+    {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            // title: 'Oops...',
+            title: '<strong>Imagen añadida</strong>',
+            confirmButtonText:
+                    '<button id="delete_button" class="btn btn-success w-100 h-100">OK</button>',
+            // footer: '<a href="">Why do I have this issue?</a>'
+        })
+        .then(function(){
+            $('#add_image_form').submit();
+        })
+    })
+    
+// enriquecedor de texto
+    document.querySelectorAll('.text').forEach(el=>{
+        ClassicEditor
+        .create(el,
         {
             toolbar:[
                     'heading',
@@ -151,11 +235,12 @@
                     'redo',
                     'fontBackgroundColor'
                 ],
-            language: 'es'
+            language: 'es',
         })
-        
         .catch(error => {
             console.log(error);
         })
+    });
+   
 </script>
 @stop

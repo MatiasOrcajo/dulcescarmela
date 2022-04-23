@@ -365,6 +365,16 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js'
+                ],
             ],
         ],
         'Select2' => [

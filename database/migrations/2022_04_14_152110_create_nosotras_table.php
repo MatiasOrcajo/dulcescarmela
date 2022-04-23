@@ -16,7 +16,7 @@ class CreateNosotrasTable extends Migration
         Schema::create('nosotras', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('text');
+            $table->text('text');
             $table->string('active');
             $table->timestamps();
         });

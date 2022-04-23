@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Nosotra extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['text', 'image', 'active'];
 }
