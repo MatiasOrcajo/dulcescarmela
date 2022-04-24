@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
 
     protected $table = 'categories';
-    protected $fillable = ['name', 'order', 'visible', 'image'];
+    protected $fillable = ['name', 'order', 'visible', 'image', 'slug'];
 
     public function generateSlug()
     {

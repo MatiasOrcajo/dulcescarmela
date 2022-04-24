@@ -135,7 +135,8 @@ class AdminController extends Controller
                 'name'    => $request->get('name'),
                 'order'   => $request->get('order'),
                 'visible' => $request->get('visible') == Constants::CATEGORY_IS_VISIBLE ? Constants::CATEGORY_IS_VISIBLE : Constants::CATEGORY_ISNT_VISIBLE,
-                'image'   => $request->file('image') ? $url : $category->image
+                'image'   => $request->file('image') ? $url : $category->image,
+                'slug'    => Str::slug($request->get('name'))
             ]);
 
             return;
