@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
-use App\Models\{Home_Slider, Nosotra};
+use App\Models\{Home_Slider, Nosotra, Category, Constants};
 
 class AdminController extends Controller
 {
@@ -35,7 +36,7 @@ class AdminController extends Controller
         $home_slider = new Home_Slider;
 
         $home_slider->image = $url;
-        $home_slider->text = $request->texto;
+        $home_slider->text  = $request->texto;
         $home_slider->order = $request->orden;
 
         $home_slider->save();
@@ -49,7 +50,7 @@ class AdminController extends Controller
         $url = Storage::url($imagen);
 
         $slider->image = $url;
-        $slider->text = $request->texto;
+        $slider->text  = $request->texto;
         $slider->order = $request->orden;
 
         $slider->save();
@@ -94,9 +95,9 @@ class AdminController extends Controller
         $image = $request->file('imagen')->store('public/images');
         $url = Storage::url($image);
 
-        $nosotras = new Nosotra;
-        $nosotras->image = $url;
-        $nosotras->text = $request->texto;
+        $nosotras         = new Nosotra;
+        $nosotras->image  = $url;
+        $nosotras->text   = $request->texto;
         $nosotras->active = $request->active;
 
         $nosotras->save();
@@ -110,7 +111,65 @@ class AdminController extends Controller
 
         $image = Nosotra::where('id', $id)->delete();
         
-        return true;
+        return false;
+    }
+
+    public function categories()
+    {
+        $categories = Category::all();
+
+        return view('admin.categories', compact('categories'));
+    }
+
+    public function createCategory(Request $request)
+    {
+        if($request->has('edit'))
+        {   
+            if($request->file('image'))
+            {
+                $image = $request->file('image')->store('public/images');
+                $url   = Storage::url($image);
+            }
+            $category  = Category::where('id', $request->get('id'))->first();
+            $category->update([
+                'name'    => $request->get('name'),
+                'order'   => $request->get('order'),
+                'visible' => $request->get('visible') == Constants::CATEGORY_IS_VISIBLE ? Constants::CATEGORY_IS_VISIBLE : Constants::CATEGORY_ISNT_VISIBLE,
+                'image'   => $request->file('image') ? $url : $category->image
+            ]);
+
+            return;
+        }
+
+        $image = $request->file('image')->store('public/images');
+        $url   = Storage::url($image);
+
+        $category = new Category;
+
+        $category->name    = $request->get('name');
+        $category->order   = $request->get('order');
+        $category->visible = $request->get('visible') == Constants::CATEGORY_IS_VISIBLE ? Constants::CATEGORY_IS_VISIBLE : Constants::CATEGORY_ISNT_VISIBLE;
+        $category->image   = $url;
+        $category->slug    = $category->generateSlug();
+
+        $category->save();
+
+        return;
+    }
+
+    public function deleteCategory(Request $request)
+    {
+        $category = Category::where('id', $request->get('id'))->delete();
+
+        return false;
+    }
+
+    public function getCategory(Request $request)
+    {
+        $category = Category::where('id', $request->get('id'))->first();
+        $object = ["category" => $category];
+
+        return response()->json($object);
     }
 
 }
