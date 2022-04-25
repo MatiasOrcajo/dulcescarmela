@@ -173,4 +173,11 @@ class AdminController extends Controller
         return response()->json($object);
     }
 
+    public function showCategory($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+
+        return view('admin.showCategory', compact('category'));
+    }
+
 }

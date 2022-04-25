@@ -33,6 +33,11 @@
                 <button type="button" data="{{$category->id}}" class="btn btn-primary edit_category" data-toggle="modal" data-target="#modalEditar{{$loop->iteration}}">
                     Editar
                 </button>
+                <a href="{{route('admin.categories.show', $category->slug)}}">
+                    <button class="btn btn-success">
+                        Ver
+                    </button>
+                </a>
             </div>
             @empty
                 <p>No se han encontrado categorias</p>
@@ -50,14 +55,6 @@
 @stop
 
 @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-
-    <style>
-        /* .swal2-styled.swal2-confirm,
-        .swal2-styled.swal2-cancel{
-            background: none !important
-        } */
-    </style>
   
 @stop
 

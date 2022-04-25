@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('categorias/create', 'Admin\AdminController@createCategory')->name('admin.categories.create');
             Route::delete('categorias/delete', 'Admin\AdminController@deleteCategory')->name('admin.categories.delete');
             Route::get('/categorias/get', 'Admin\AdminController@getCategory')->name('admin.categories.get');
-            Route::get('categoria/{category}', 'Admin\AdminController@showCategory')->name('admin.categories.show');
+            Route::get('categoria/{slug}', 'Admin\AdminController@showCategory')->name('admin.categories.show');
         });
 
 });
