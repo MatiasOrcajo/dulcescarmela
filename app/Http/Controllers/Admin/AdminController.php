@@ -84,9 +84,9 @@ class AdminController extends Controller
             }
             
             $imagen->update([
-                "text" => $request->texto,
+                "text"   => $request->texto,
                 "active" => $request->active,
-                "image" => $request->has('imagen') ? $url : $imagen->image
+                "image"  => $request->has('imagen') ? $url : $imagen->image
             ]);
 
             return redirect()->back();
