@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
-use App\Models\{Home_Slider, Nosotra, Category, Constants};
+use App\Models\{Home_Slider, Nosotra, Category, Constants, Product};
 
 class AdminController extends Controller
 {
     public function index()
     {
+        dd(Product::with('category')->get());
         return view('admin.dashboard');
     }
 
@@ -21,7 +22,7 @@ class AdminController extends Controller
     public function homeSlider()
     {
         
-        $sliders = Home_Slider::orderBy('order', 'ASC')->get();
+        $sliders = Home_Slider::orderBy('orden', 'ASC')->get();
 
         return view('admin.homeSlider', compact('sliders'));
     }
