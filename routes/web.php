@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth']], function() {
             Route::delete('categorias/delete', 'Admin\AdminController@deleteCategory')->name('admin.categories.delete');
             Route::get('/categorias/get', 'Admin\AdminController@getCategory')->name('admin.categories.get');
             Route::get('categoria/{slug}', 'Admin\AdminController@showCategory')->name('admin.categories.show');
+
+            // productos
+            Route::get('producto/{slug}', 'Admin\AdminController@showProduct')->name('admin.product.show');
         });
 
 });

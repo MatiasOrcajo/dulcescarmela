@@ -13,7 +13,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        dd(Product::with('category')->get());
         return view('admin.dashboard');
     }
 
@@ -179,6 +178,13 @@ class AdminController extends Controller
         $category = Category::where('slug', $slug)->first();
 
         return view('admin.showCategory', compact('category'));
+    }
+
+    public function showProduct($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+
+        return view('admin.showProduct', compact('product'));
     }
 
 }
