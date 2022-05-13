@@ -62,9 +62,43 @@
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary my-5" id="create_category">
-        Crear Categoria
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Crear Producto
     </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crear Producto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Titulo">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="description" placeholder="Descripción">
+              </div>
+              <div class="form-group">
+                <label for="files">Seleccionar fotos:</label>
+                <br>
+                <input accept="image/*" type="file" name="images[]" id="" class="" multiple>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
 
@@ -75,65 +109,3 @@
 @stop
 
 @section('js')
-<script>
-  // crear categoria
-        
-  $('#create_category').on('click', async function(e)
-        {
-            const route = '{{route('admin.categories.create')}}';
-            const { value: formValues } = await Swal.fire({
-                title: 'Crear categoría',
-                html:
-                    '<input id="name" name="name" class="swal2-input w-75" placeholder="Nombre">' +
-                    '<input id="order" type="number" name="order" class="swal2-input w-75" placeholder="Orden">'+
-                    '<label for="visible" class="w-25">Visible:</label>'+
-                    '<select name="visible" id="visible" class="w-50 mt-3">'+
-                        '<option value="{{App\Models\Constants::CATEGORY_IS_VISIBLE}}">Si</option>'+
-                        '<option value="{{App\Models\Constants::CATEGORY_ISNT_VISIBLE}}">No</option>'+
-                    '</select>'+
-                    '<input id="image" name="image" type="file" class="mt-3 w-75">',
-                focusConfirm: false,
-                confirmButtonText: 'CREAR',
-                showCloseButton: true,
-                preConfirm: () => {
-                    
-                    const name = $('#name')[0].value;
-                    const order = $('#order')[0].value;
-                    const image = $('#image')[0].files[0];
-                    const visible = $('#visible')[0].value;
-
-                    const form = new FormData();
-                    form.append('_token', '{{ csrf_token() }}')
-                    form.append('name', name);
-                    form.append('order', order);
-                    form.append('image', image);
-                    form.append('visible', visible);
-
-                    $.ajax({
-                        url : route,
-                        type : 'POST',
-                        datatype : 'json',
-                        data: form,
-                        processData: false,  // tell jQuery not to process the data
-                        contentType: false,   // tell jQuery not to set contentType
-                        success: function(res){
-                            Swal.fire({
-                                icon: 'success',
-                                confirmButtonText:
-                                    '<button id="delete_button" class="btn btn-success w-100 h-100">OK</button>',
-                                title: '<strong>Categoria creada</strong>',
-                            })
-                            .then(function(){
-                                location.reload();
-                            })
-                        } 
-                    })
-                    return null;
-                }
-            })
-
-                if (formValues) {
-                    Swal.fire(JSON.stringify(formValues))
-                }
-        })
-</script>
