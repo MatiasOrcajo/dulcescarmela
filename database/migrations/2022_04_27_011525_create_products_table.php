@@ -21,8 +21,8 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->text('specs')->nullable();
             $table->integer('price');
-            $table->string('images');
-            $table->string('cover_photo')->nullable(); //if !cover_photo then it takes images[0];
+            // $table->string('images');
+            $table->string('cover_photo')->nullable(); //if !cover_photo then it takes index[0] of the array of images;
             $table->boolean('has_discount')->nullable();
             $table->integer('discount_price')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

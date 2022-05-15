@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 m-2">
-            <img src="{{$product->}}" alt="">
+            {{-- <img src="{{$product->}}" alt=""> --}}
         </div>
     </div>
 

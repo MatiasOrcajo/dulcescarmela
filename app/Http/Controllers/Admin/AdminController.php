@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
-use App\Models\{Home_Slider, Nosotra, Category, Constants, Product};
+use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage};
 
 class AdminController extends Controller
 {
@@ -168,7 +168,7 @@ class AdminController extends Controller
     public function getCategory(Request $request)
     {
         $category = Category::where('id', $request->get('id'))->first();
-        $object = ["category" => $category];
+        $object   = ["category" => $category];
 
         return response()->json($object);
     }
@@ -180,9 +180,47 @@ class AdminController extends Controller
         return view('admin.showCategory', compact('category'));
     }
 
+    public function createProduct(Request $request, $slug)
+    {
+        // dd(Str::slug($request->title));
+        $request->validate([
+            'title'       => 'required',
+            'description' => 'required',
+            'price'       => 'required',
+        ]);
+        
+        $category = Category::where('slug', $slug)->first();
+        $product = Product::create([
+            'category_id' => $category->id,
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount_price' => $request->discount_price,
+            'cover_photo' => $request->file('portrait_image') ? $request->file('portrait_image') : ''
+        ]);
+
+        
+
+        foreach($request->file('images') as $image){
+            // dd($product->id);
+            $imageToStore = $image->store('public/images');
+            $url   = Storage::url($imageToStore);
+
+            ProductImage::create([
+                'image' => $url,
+                'product_id' => $product->id
+            ]);
+        }
+
+        return back()->with('success', 'Added');
+
+    }
+
     public function showProduct($slug)
     {
         $product = Product::where('slug', $slug)->first();
+        // dd($product->getProductImages);
 
         return view('admin.showProduct', compact('product'));
     }

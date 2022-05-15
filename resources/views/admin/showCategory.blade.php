@@ -10,7 +10,14 @@
 
 @section('content')
     
-
+@if(session('success'))
+  <div class="alert alert-dismiss alert-success">
+    <button type="button" class="btn-close" data-bs-dismiss="alert">
+      <h4>Success!</h4>
+      <p>Nuevo producto creado</p>
+    </button>
+  </div>
+@endif
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 d-flex flex-wrap">
@@ -77,24 +84,38 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="" enctype="multipart/form-data">
+            <form action="{{route('admin.product.create', $category->slug)}}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Titulo">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control @error('title') is-invalid @enderror" name="description" placeholder="Descripción">
+                <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Descripción" cols="30" rows="10"></textarea>
+              </div>
+
+              {{-- 14/5/2022 Queda ver el tema "especificaciones", creo es mejor verlo una vez la web esté en producción --}}
+              <div class="form-group">
+                <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" placeholder="Precio">
               </div>
               <div class="form-group">
-                <label for="files">Seleccionar fotos:</label>
+                <label for="">Precio de descuento (solo en caso de tener): </label>
+                <input type="number" class="form-control @error('discount_price') is-invalid @enderror" name="discount_price" placeholder="Precio">
+              </div>
+              <div class="form-group">
+                <label for="files">Seleccionar fotode portada (si no se sube ninguna, se puede seleccionar desde la vista del producto una imagen como portada):</label>
                 <br>
-                <input accept="image/*" type="file" name="images[]" id="" class="" multiple>
+                <input accept="image/*" type="file" name="cover_photo" id="" class="">
+              </div>
+              <div class="form-group">
+                <label for="files">Seleccionar fotos del producto:</label>
+                <br>
+                <input accept="image/*" type="file" name="images[]" id="" class="" multiple class="@error('images[]') is-invalid @enderror">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
