@@ -5,19 +5,29 @@
 @section('title', 'Nosotras')
 
 @section('content_header')
-    <h1>Categorias</h1>
+    <h1>Categoría: {{$category->name}}</h1>
 @stop
 
 @section('content')
     
-@if(session('success'))
+@if(session('success') && session('success') == 'Added')
   <div class="alert alert-dismiss alert-success">
     <button type="button" class="btn-close" data-bs-dismiss="alert">
-      <h4>Success!</h4>
+      <h4>Listo!</h4>
       <p>Nuevo producto creado</p>
     </button>
   </div>
 @endif
+@if(session('success') && session('success') == 'Deleted')
+  <div class="alert alert-dismiss alert-success">
+    <button type="button" class="btn-close" data-bs-dismiss="alert">
+      <h4>Listo!</h4>
+      <p>Producto eliminado</p>
+    </button>
+  </div>
+@endif
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 d-flex flex-wrap">
@@ -37,6 +47,35 @@
                 </thead>
                 <tbody>
                   @forelse ( $category->products as $product)
+
+
+                    <div class="modal fade" id="modalEliminar{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                              <h5 class="modal-title" id="modalEliminarLabel">Eliminar Slider</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                              <div class="modal-body pb-0">
+                                  <form action="{{route('admin.product.delete', $product->id)}}" method="POST" enctype="multipart/form-data">
+                                      @method('DELETE')
+                                      @csrf
+                                      
+                                      <h3>¿Segura que deseas eliminar el producto {{$product->title}}?</h3>
+                  
+                                      <div class="modal-footer p-0 mt-4">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+
+
                     <tr>
                       <th scope="row">{{$loop->iteration}}</th>
                       <td>{{$product->title}}</td>
@@ -53,11 +92,9 @@
                         </a>
                       </td>
                       <td>
-                        <a href="">
-                          <button class="btn btn-danger">
+                          <button class="btn btn-danger" data-target="#modalEliminar{{$product->id}}" data-toggle="modal">
                             Eliminar
                           </button>
-                        </a>
                       </td>
                     </tr>
                   @empty

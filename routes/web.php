@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth']], function() {
 
             // productos
             Route::get('producto/{slug}', 'Admin\AdminController@showProduct')->name('admin.product.show');
+            Route::delete('producto/{product}', 'Admin\AdminController@deleteProduct')->name('admin.product.delete');
         });
 
 });

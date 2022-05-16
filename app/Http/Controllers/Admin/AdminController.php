@@ -182,7 +182,6 @@ class AdminController extends Controller
 
     public function createProduct(Request $request, $slug)
     {
-        // dd(Str::slug($request->title));
         $request->validate([
             'title'       => 'required',
             'description' => 'required',
@@ -203,7 +202,6 @@ class AdminController extends Controller
         
 
         foreach($request->file('images') as $image){
-            // dd($product->id);
             $imageToStore = $image->store('public/images');
             $url   = Storage::url($imageToStore);
 
@@ -220,9 +218,15 @@ class AdminController extends Controller
     public function showProduct($slug)
     {
         $product = Product::where('slug', $slug)->first();
-        // dd($product->getProductImages);
 
         return view('admin.showProduct', compact('product'));
+    }
+
+    public function deleteProduct(Product $product)
+    {
+        $product->delete();
+
+        return back()->with('success', 'Deleted');
     }
 
 }
