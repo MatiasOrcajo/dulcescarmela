@@ -42,30 +42,14 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
 </div>
 
 
-@stop
 
-@section('css')
-<style>
-    .swiper {
-        width: 800px;
-        height: 600px;
-    }
-    .swiper-slide img{
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: cover
-    }
-</style>
-  
-@stop
-
-@section('js')
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
 const swiper = new Swiper('.swiper', {
   // Optional parameters
-  direction: 'vertical',
+  direction: 'horizontal',
   loop: true,
+  autoplay: true,
 
   // If we need pagination
   pagination: {
@@ -84,3 +68,23 @@ const swiper = new Swiper('.swiper', {
   },
 });
 </script>
+
+
+@stop
+
+@section('css')
+<style>
+    .swiper {
+        width: 800px;
+        height: 600px;
+    }
+    .swiper-slide img{
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover
+    }
+</style>
+  
+@stop
+
+@section('js')
