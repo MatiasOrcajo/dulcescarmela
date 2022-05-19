@@ -139,7 +139,7 @@
                 <input type="number" class="form-control @error('discount_price') is-invalid @enderror" name="discount_price" placeholder="Precio">
               </div>
               <div class="form-group">
-                <label for="files">Seleccionar fotode portada (si no se sube ninguna, se puede seleccionar desde la vista del producto una imagen como portada):</label>
+                <label for="files">Seleccionar foto de portada (si no se sube ninguna, se puede seleccionar desde la vista del producto una imagen como portada):</label>
                 <br>
                 <input accept="image/*" type="file" name="cover_photo" id="" class="">
               </div>

@@ -48,6 +48,15 @@ Route::group(['middleware' => ['auth']], function() {
             // productos
             Route::get('producto/{slug}', 'Admin\AdminController@showProduct')->name('admin.product.show');
             Route::delete('producto/{product}', 'Admin\AdminController@deleteProduct')->name('admin.product.delete');
+            Route::post('producto/{product}/edit', 'Admin\AdminController@editProduct')->name('admin.product.edit');
+            Route::get('producto/{product}/imagenes', 'Admin\AdminController@editProductImages')->name('admin.product.images');
+
+                // editar imagen del producto
+                Route::post('producto/edit-image', 'Admin\AdminController@editProductImage')->name('admin.product.editProductImage');
+
+                //borrar imagen del producto
+                Route::delete('producto/delete-image/{image}', 'Admin\AdminController@deleteProductImage')->name('admin.product.deleteProductImage');
+            
         });
 
 });

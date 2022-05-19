@@ -16,12 +16,20 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
 
 
 <div class="container-fluid">
+    @if(session('success'))
+    <div class="alert alert-dismiss alert-success">
+        <button type="button" class="btn-close" data-bs-dismiss="alert">
+        <h4>Listo!</h4>
+        <p>Producto editado</p>
+        </button>
+    </div>
+    @endif
     <div class="row">
-        <div class="col-md-6 m-2">
+        <div class="col-md-6 my-2">
             <div class="swiper">
                 <div class="swiper-wrapper">
                     @foreach ($product->getProductImages as $image)
-                        <div class="swiper-slide">
+                        <div class="swiper-slide d-flex align-items-center justify-content-center position-relative">
                             <img src="{{asset($image->image)}}" alt="">
                         </div>
                     @endforeach
@@ -32,14 +40,74 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
+            <!-- Button trigger modal -->
+            <a href="{{route('admin.product.images', $product->id)}}">
+                <button type="button" class="btn btn-primary my-5" id="create_category">
+                    Editar fotos
+                </button>
+            </a>
+        </div>
+
+        <div class="col-md-6 px-md-5">
+            <form action="{{route('admin.product.edit', $product->id)}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="category">Categoría:</label>
+                    <select name="category" id="" class="form-control">
+                        @foreach ($categories as $category)
+                            <option @if ($category == $product->category) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" name="title" id="title" class="form-control" value="{{$product->title}}">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción:</label>
+                    <br>
+                    {{-- <input type="text" name="description" id="description" class="form-control" value="{{$product->description}}"> --}}
+                    <textarea name="description" id="description" style="width: 100%"rows="10">{{$product->description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price">Precio:</label>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="text" name="price" id="price" class="form-control" value="{{$product->price}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="discount_price">Precio de descuento (si no tiene no poner nada):</label>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="text" name="discount_price" id="discount_price" class="form-control" value="{{$product->discount_price}}">
+                    </div>
+                </div>
+                <div class="form-group d-flex align-items-center justify-content-center">
+                    @if ($product->cover_photo)
+                    <img src="{{asset($product->cover_photo)}}" alt="" style="width: 50%; height: auto;">
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="files">Seleccionar foto de portada (si no se sube ninguna, se puede seleccionar desde la vista del producto una imagen como portada):</label>
+                    <br>
+                    <input accept="image/*" type="file" name="cover_photo" id="" class="">
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Guardar cambios
+                </button>
+            </form>
         </div>
     </div>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary my-5" id="create_category">
-        Crear Categoria
-    </button>
 </div>
+
 
 
 

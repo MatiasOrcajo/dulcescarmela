@@ -187,26 +187,31 @@ class AdminController extends Controller
             'description' => 'required',
             'price'       => 'required',
         ]);
+
+        if($request->file('cover_photo')){
+            $cover_photo_to_store = $request->file('cover_photo')->store('public/images');
+            $cover_photo_url      = Storage::url($cover_photo_to_store);
+        }
+
+        $currentCoverPhoto = $product->cover_photo;
         
         $category = Category::where('slug', $slug)->first();
         $product = Product::create([
-            'category_id' => $category->id,
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-            'price' => $request->price,
+            'category_id'    => $category->id,
+            'title'          => $request->title,
+            'slug'           => Str::slug($request->title),
+            'description'    => $request->description,
+            'price'          => $request->price,
             'discount_price' => $request->discount_price,
-            'cover_photo' => $request->file('portrait_image') ? $request->file('portrait_image') : ''
+            'cover_photo'    => $request->file('cover_photo') ? $cover_photo_url : $currentCoverPhoto
         ]);
-
-        
 
         foreach($request->file('images') as $image){
             $imageToStore = $image->store('public/images');
-            $url   = Storage::url($imageToStore);
+            $url          = Storage::url($imageToStore);
 
             ProductImage::create([
-                'image' => $url,
+                'image'      => $url,
                 'product_id' => $product->id
             ]);
         }
@@ -217,9 +222,10 @@ class AdminController extends Controller
 
     public function showProduct($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product    = Product::where('slug', $slug)->first();
+        $categories = Category::all();
 
-        return view('admin.showProduct', compact('product'));
+        return view('admin.showProduct', compact('product', 'categories'));
     }
 
     public function deleteProduct(Product $product)
@@ -229,4 +235,51 @@ class AdminController extends Controller
         return back()->with('success', 'Deleted');
     }
 
+    public function editProduct(Request $request, Product $product)
+    {
+        if($request->file('cover_photo')){
+            $cover_photo_to_store = $request->file('cover_photo')->store('public/images');
+            $cover_photo_url      = Storage::url($cover_photo_to_store);
+        }
+
+        $currentCoverPhoto = $product->cover_photo;
+        
+        $product->update([
+            'category'       => $request->get('category'),
+            'title'          => $request->get('title'),
+            'description'    => $request->get('description'),
+            'price'          => $request->get('price'),
+            'discount_price' => $request->get('discount_price'),
+            'cover_photo'    => $request->file('cover_photo') ? $cover_photo_url : $currentCoverPhoto,
+        ]);
+
+        return back()->with('success', 'Edited');
+    }
+
+    public function editProductImages(Product $product)
+    {
+        return view('admin.showProductImages', compact('product'));
+    }
+
+    public function editProductImage(Request $request)
+    {
+        $product_image = ProductImage::where('id', $request->get('id'))->first();
+
+        if($request->file('image')){
+            $cover_photo_to_store = $request->file('image')->store('public/images');
+            $cover_photo_url      = Storage::url($cover_photo_to_store);
+        }
+
+        $product_image->update([
+            'image' => $cover_photo_url,
+        ]);
+
+        return back();
+    }
+
+    public function deleteProductImage(Request $request)
+    {
+        $product_image = ProductImage::where('id', $request->get('id'))->first()->delete();
+        return back();
+    }
 }
