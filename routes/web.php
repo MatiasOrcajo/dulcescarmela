@@ -56,6 +56,9 @@ Route::group(['middleware' => ['auth']], function() {
 
                 //borrar imagen del producto
                 Route::delete('producto/delete-image/{image}', 'Admin\AdminController@deleteProductImage')->name('admin.product.deleteProductImage');
+
+                // añadir imagen de producto
+                Route::post('producto/add-image', 'Admin\AdminController@addProductImage')->name('admin.product.addProductImage');
             
         });
 

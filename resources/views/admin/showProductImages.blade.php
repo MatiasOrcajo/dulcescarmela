@@ -13,14 +13,6 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
 @stop
 
 @section('content')
-    @if(session('success'))
-    <div class="alert alert-dismiss alert-success">
-        <button type="button" class="btn-close" data-bs-dismiss="alert">
-        <h4>Listo!</h4>
-        <p>Producto editado</p>
-        </button>
-    </div>
-    @endif
     <div class="row">
         @foreach ($product->getProductImages as $image)
             <div class="col-md-3">
@@ -41,6 +33,12 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
         @endforeach
     </div>
 
+    <div class="row">
+        <button type="button" class="btn btn-primary add_image my-5" data="{{$product->id}}">
+            Añadir Imagen
+        </button>
+    </div>
+
 @stop
 
 @section('css')
@@ -52,6 +50,52 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     $(document).ready(function(){
+        $('.add_image').on('click', function(e){
+            const { value: formValues } = Swal.fire({
+                    title: 'Añadir nueva imagen',
+                    html:
+                        '<input id="image" name="image" type="file" class="mt-3 w-75">',
+                    focusConfirm: false,
+                    confirmButtonText: 'AÑADIR',
+                    showCloseButton: true,
+                    preConfirm: () => {
+                        
+                        const image = $('#image')[0].files[0];
+                        const route = '{{route('admin.product.addProductImage')}}';
+
+                        const form = new FormData();
+                        form.append('_token', '{{ csrf_token() }}')
+                        form.append('id', e.target.getAttribute('data'))
+                        form.append('image', image);
+
+                        $.ajax({
+                            url : route,
+                            type : 'POST',
+                            datatype : 'json',
+                            data: form,
+                            processData: false,  // tell jQuery not to process the data
+                            contentType: false,   // tell jQuery not to set contentType
+                            success: function(res){
+                                Swal.fire({
+                                    icon: 'success',
+                                    confirmButtonText:
+                                        '<button id="delete_button" class="btn btn-success w-100 h-100">OK</button>',
+                                    title: '<strong>Imagen añadida</strong>',
+                                })
+                                .then(function(){
+                                    location.reload();
+                                })
+                            } 
+                        })
+                        return null;
+                    }
+                })
+
+                if (formValues) {
+                    Swal.fire(JSON.stringify(formValues))
+                }
+        })
+
         $.each($('.change_image'), function(){
             $(this).click(function(e){
                 const { value: formValues } = Swal.fire({

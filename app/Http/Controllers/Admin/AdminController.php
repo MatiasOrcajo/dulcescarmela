@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\File;
 use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage};
 
 class AdminController extends Controller
@@ -192,8 +192,6 @@ class AdminController extends Controller
             $cover_photo_to_store = $request->file('cover_photo')->store('public/images');
             $cover_photo_url      = Storage::url($cover_photo_to_store);
         }
-
-        $currentCoverPhoto = $product->cover_photo;
         
         $category = Category::where('slug', $slug)->first();
         $product = Product::create([
@@ -203,7 +201,7 @@ class AdminController extends Controller
             'description'    => $request->description,
             'price'          => $request->price,
             'discount_price' => $request->discount_price,
-            'cover_photo'    => $request->file('cover_photo') ? $cover_photo_url : $currentCoverPhoto
+            'cover_photo'    => $request->file('cover_photo') ? $cover_photo_url : ''
         ]);
 
         foreach($request->file('images') as $image){
@@ -266,12 +264,16 @@ class AdminController extends Controller
         $product_image = ProductImage::where('id', $request->get('id'))->first();
 
         if($request->file('image')){
-            $cover_photo_to_store = $request->file('image')->store('public/images');
-            $cover_photo_url      = Storage::url($cover_photo_to_store);
+            $new_image_to_store = $request->file('image')->store('public/images');
+            $new_image_url      = Storage::url($new_image_to_store);
+        }
+
+        if(File::exists(public_path($product_image->image))){
+            File::delete(public_path($product_image->image));
         }
 
         $product_image->update([
-            'image' => $cover_photo_url,
+            'image' => $new_image_url,
         ]);
 
         return back();
@@ -279,7 +281,29 @@ class AdminController extends Controller
 
     public function deleteProductImage(Request $request)
     {
-        $product_image = ProductImage::where('id', $request->get('id'))->first()->delete();
+        $product_image = ProductImage::where('id', $request->get('id'))->first();
+
+        if(File::exists(public_path($product_image->image))){
+            File::delete(public_path($product_image->image));
+        }
+
+        $product_image->delete();
+
+        return back();
+    }
+
+    public function addProductImage(Request $request)
+    {
+        if($request->file('image')){
+            $new_image_to_store = $request->file('image')->store('public/images');
+            $new_image_url      = Storage::url($new_image_to_store);
+        }
+
+        ProductImage::create([
+            'image' => $new_image_url,
+            'product_id' => $request->get('id')
+        ]);
+
         return back();
     }
 }
