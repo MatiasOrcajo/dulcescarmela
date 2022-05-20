@@ -33,32 +33,32 @@ Route::group(['middleware' => ['auth']], function() {
             Route::delete('/home-slider/{slider}/eliminar', 'Admin\AdminController@deleteSlider')->name('admin.eliminarSlider');
 
             // nosotras
-            Route::get('nosotras', 'Admin\AdminController@nosotras')->name('admin.nosotras');
-            Route::post('/nosotras/add', 'Admin\AdminController@addToNosotras')->name('admin.nosotras.add');
-            Route::delete('/nosotras/delete', 'Admin\AdminController@deleteNosotrasImage')->name('admin.nosotras.delete');
+            Route::get('nosotras', 'Admin\NosotrasController@nosotras')->name('admin.nosotras');
+            Route::post('/nosotras/add', 'Admin\NosotrasController@addToNosotras')->name('admin.nosotras.add');
+            Route::delete('/nosotras/delete', 'Admin\NosotrasController@deleteNosotrasImage')->name('admin.nosotras.delete');
 
             // categorias
-            Route::get('/categorias', 'Admin\AdminController@categories')->name('admin.categories');
-            Route::post('categorias/create', 'Admin\AdminController@createCategory')->name('admin.categories.create');
-            Route::delete('categorias/delete', 'Admin\AdminController@deleteCategory')->name('admin.categories.delete');
-            Route::get('/categorias/get', 'Admin\AdminController@getCategory')->name('admin.categories.get');
-            Route::get('categoria/{slug}', 'Admin\AdminController@showCategory')->name('admin.categories.show');
-            Route::post('/categoria/{slug}/create-product', 'Admin\AdminController@createProduct')->name('admin.product.create');
+            Route::get('/categorias', 'Admin\CategoryController@categories')->name('admin.categories');
+            Route::post('categorias/create', 'Admin\CategoryController@createCategory')->name('admin.categories.create');
+            Route::delete('categorias/delete', 'Admin\CategoryController@deleteCategory')->name('admin.categories.delete');
+            Route::get('/categorias/get', 'Admin\CategoryController@getCategory')->name('admin.categories.get');
+            Route::get('categoria/{slug}', 'Admin\CategoryController@showCategory')->name('admin.categories.show');
+            Route::post('/categoria/{slug}/create-product', 'Admin\CategoryController@createProduct')->name('admin.product.create');
 
             // productos
-            Route::get('producto/{slug}', 'Admin\AdminController@showProduct')->name('admin.product.show');
-            Route::delete('producto/{product}', 'Admin\AdminController@deleteProduct')->name('admin.product.delete');
-            Route::post('producto/{product}/edit', 'Admin\AdminController@editProduct')->name('admin.product.edit');
-            Route::get('producto/{product}/imagenes', 'Admin\AdminController@editProductImages')->name('admin.product.images');
+            Route::get('producto/{slug}', 'Admin\ProductController@showProduct')->name('admin.product.show');
+            Route::delete('producto/{product}', 'Admin\ProductController@deleteProduct')->name('admin.product.delete');
+            Route::post('producto/{product}/edit', 'Admin\ProductController@editProduct')->name('admin.product.edit');
+            Route::get('producto/{product}/imagenes', 'Admin\ProductController@editProductImages')->name('admin.product.images');
 
                 // editar imagen del producto
-                Route::post('producto/edit-image', 'Admin\AdminController@editProductImage')->name('admin.product.editProductImage');
+                Route::post('producto/edit-image', 'Admin\ProductController@editProductImage')->name('admin.product.editProductImage');
 
                 //borrar imagen del producto
-                Route::delete('producto/delete-image/{image}', 'Admin\AdminController@deleteProductImage')->name('admin.product.deleteProductImage');
+                Route::delete('producto/delete-image/{image}', 'Admin\ProductController@deleteProductImage')->name('admin.product.deleteProductImage');
 
                 // añadir imagen de producto
-                Route::post('producto/add-image', 'Admin\AdminController@addProductImage')->name('admin.product.addProductImage');
+                Route::post('producto/add-image', 'Admin\ProductController@addProductImage')->name('admin.product.addProductImage');
             
         });
 
