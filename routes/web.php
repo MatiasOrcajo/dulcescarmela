@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 // RUTAS DEL ADMIN
@@ -63,5 +61,10 @@ Route::group(['middleware' => ['auth']], function() {
         });
 
 });
+
+
+// RUTAS PUBLICAS
+
+// Route::view('/', 'app')->name('app');
 
 require __DIR__.'/auth.php';
