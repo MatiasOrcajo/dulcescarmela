@@ -22,8 +22,9 @@ class AdminController extends Controller
     {
         
         $sliders = Home_Slider::orderBy('orden', 'ASC')->get();
+        $products = Product::all();
 
-        return view('admin.homeSlider', compact('sliders'));
+        return view('admin.homeSlider', compact('sliders', 'products'));
     }
 
     
@@ -36,8 +37,9 @@ class AdminController extends Controller
         $home_slider = new Home_Slider;
 
         $home_slider->image = $url;
-        $home_slider->text  = $request->texto;
-        $home_slider->order = $request->orden;
+        $home_slider->texto  = $request->texto;
+        $home_slider->orden = $request->orden;
+        $home_slider->product_id = $request->product;
 
         $home_slider->save();
 
@@ -46,12 +48,16 @@ class AdminController extends Controller
 
     public function editSlider (Request $request, Home_Slider $slider)
     {
-        $imagen = $request->file('imagen')->store('public/images');
-        $url = Storage::url($imagen);
+        if($request->file('imagen')){
+            $imagen = $request->file('imagen')->store('public/images');
+            $url = Storage::url($imagen);
+            $slider->image = $url;
+        }
 
-        $slider->image = $url;
-        $slider->text  = $request->texto;
-        $slider->order = $request->orden;
+        
+        $slider->texto  = $request->texto;
+        $slider->orden = $request->orden;
+        $slider->product_id = $request->product;
 
         $slider->save();
 

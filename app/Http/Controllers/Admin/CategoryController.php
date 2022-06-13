@@ -82,7 +82,6 @@ class CategoryController extends Controller
         $request->validate([
             'title'       => 'required',
             'description' => 'required',
-            'price'       => 'required',
         ]);
 
         if($request->file('cover_photo')){

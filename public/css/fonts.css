@@ -135,3 +135,11 @@
     src: url('fonts/Montserrat-ThinItalic.ttf');
     src: local("Montserrat-ThinItalic"), url("../css/fonts/Montserrat-ThinItalic.ttf") format("truetype");
 }
+@font-face{
+    font-family: KaushanScript-Regular;
+    src: url('fonts/KaushanScript-Regular.ttf');
+    src: local("KaushanScript-Regular"), url("../css/fonts/KaushanScript-Regular.ttf") format("truetype");
+}
+
+
+

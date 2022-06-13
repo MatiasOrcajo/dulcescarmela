@@ -21,10 +21,10 @@
                         <img src="{{asset($slider->image)}}" alt="">
                     </div>
                     <div class="card-body">
-                        <h5>Texto: {{$slider->text}}</h5>
+                        <h5>Texto: {{$slider->texto}}</h5>
                     </div>
                     <div class="card-footer">
-                        <h5>Orden: {{$slider->order}}</h5>
+                        <h5>Orden: {{$slider->orden}}</h5>
                     </div>
                 </div>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar{{$slider->id}}">
@@ -33,12 +33,6 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar{{$slider->id}}">
                     Editar
                 </button>
-                {{-- <a href="{{route('admin.editarSlider', $slider->id)}}">
-                    <div class="btn btn-primary">Editar</div>
-                </a> --}}
-
-
-
 
                 {{-- modal para editar --}}
                 
@@ -80,6 +74,14 @@
                         <div class="form-group">
                             <label for="texto">Texto</label>
                             <input type="text" id="texto" class="form-control" name="texto">
+                        </div>
+                        <div class="form-group">
+                            <label for="texto">Producto referenciado:</label>
+                            <select name="product" id="">
+                                @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->title}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group mt-5">
                             <input type="file" name="imagen">

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Home_Slider extends Model
 {
     protected $table = "home_sliders";
+    protected $fillable = ["texto", "orden", "product_id", "image"];
 
     
 

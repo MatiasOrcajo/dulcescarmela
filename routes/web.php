@@ -65,6 +65,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 // RUTAS PUBLICAS
 
-// Route::view('/', 'app')->name('app');
+Route::get('/', 'FrontController@index')->name('front.index');
 
 require __DIR__.'/auth.php';

@@ -14,14 +14,23 @@
                             @csrf
                             <div class="form-group">
                                 <label for="orden">Orden</label>
-                                <input type="text" id="orden" class="form-control" name="orden" value="{{$slider->order}}">
+                                <input type="text" id="orden" class="form-control" name="orden" value="{{$slider->orden}}">
                             </div>
                             <div class="form-group">
                                 <label for="texto">Texto</label>
-                                <input type="text" id="texto" class="form-control" name="texto" value="{{$slider->text}}">
+                                <input type="text" id="texto" class="form-control" name="texto" value="{{$slider->texto}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="texto">Producto referenciado:</label>
+                                <select name="product" id="">
+                                    @foreach ($products as $product)
+                                        <option value="{{$product->id}}" @if($product->id == $slider->product_id) selected @endif>{{$product->title}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group mt-5">
                                 <img src="{{asset($slider->image)}}" alt="" style="height: 150px; width: auto;" class="mb-4">
+                                <br>
                                 <input type="file" name="imagen">
                             </div>
     
