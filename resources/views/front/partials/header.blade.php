@@ -8,7 +8,12 @@
     </div> -->
     <!-- navbar desktop -->
     <div class="m-0 p-0">
-        <ul class="me-auto mt-5 d-flex justify-content-center align-items-center mb-2 mb-lg-0">
+        <div class="d-flex justify-content-center align-items-center">
+            <a class="d-flex mt-5 justify-content-center align-items-center" href="#">
+                <img src="/images/dulces_carmela_logo.jpg" alt="" width="150" height="150">
+            </a>
+        </div>
+        <ul class="me-auto mt-2 d-flex justify-content-center align-items-center mb-2 mb-lg-0">
             <li class="nav-item mx-5">
                 <a class="nav-link active" aria-current="page">Home</a>
             </li>
@@ -18,9 +23,6 @@
             <li class="nav-item mx-5">
                 <a class="nav-link">Productos</a>
             </li>  
-            <a class="d-flex justify-content-center align-items-center" href="#">
-                <img src="/images/dulces_carmela_logo.jpg" alt="" width="150" height="150">
-            </a>
             <li class="nav-item mx-5">
                 <a class="nav-link">Categorías</a>
             </li>  
@@ -43,9 +45,36 @@
     }
 
     .nav-link{
-        font-family: 'Montserrat-Bold', serif;
-        font-size: 18px;
+        font-family: 'Lora-Regular', serif;
+        font-size: 15px;
         text-decoration: none;
-        color: #214ABF;
+        color: black !important;
+        text-transform: uppercase;
+        width: 150px;
+        text-align: center
+    }
+
+    .nav-item{
+        position: relative
+    }
+
+    li:before{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width:0%;
+        height: 2px;
+        background: #214ABF;
+        transition: .5s ease;
+    }
+
+    li:hover:before{
+        width: 100%;
+        background: #214ABF;
+        transition: .5s ease;
+    }
+
+    li:hover{
+        cursor: pointer;
     }
 </style>

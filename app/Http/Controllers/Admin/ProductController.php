@@ -39,8 +39,9 @@ class ProductController extends Controller
             'title'          => $request->get('title'),
             'description'    => $request->get('description'),
             'price'          => $request->get('price'),
-            'discount_price' => $request->get('discount_price'),
+            // 'discount_price' => $request->get('discount_price'),
             'cover_photo'    => $request->file('cover_photo') ? $cover_photo_url : $currentCoverPhoto,
+            'featured'       => $request->get('featured'),
         ]);
 
         return back()->with('success', 'Edited');

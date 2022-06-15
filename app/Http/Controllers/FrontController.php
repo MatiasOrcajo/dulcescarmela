@@ -12,6 +12,15 @@ class FrontController extends Controller
         // sliders
         $sliders = Home_Slider::all();
 
-        return view('front.index', compact('sliders'));
+        // nosotras
+        $nosotras = Nosotra::where('active', 'Si')->first();
+
+        // productos destacados
+        $featured = Product::where('featured', 'si')->get();
+        
+
+        return view('front.index', compact('sliders', 'nosotras', 'featured'));
     }
 }
+
+

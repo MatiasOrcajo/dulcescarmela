@@ -143,6 +143,7 @@
 @stop
 
 @section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 <script>

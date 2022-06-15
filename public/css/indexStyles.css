@@ -1,0 +1,92 @@
+.image-text{
+    font-family: 'Lora-Medium', serif;
+    color: white;
+}
+
+.image-text span{
+    font-size: 21px;
+}
+
+.image-text h2{
+    font-size: 50px;
+}
+
+.image-text button{
+    font-family: 'Montserrat-Bold', sans-serif;
+    background-color: #214ABF;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    text-align: center;
+}
+
+.image-text button:hover{
+    color: white;
+}
+
+.nosotras-text p{
+    color: white !important;
+    font-family: 'Montserrat-Bold', serif;
+    font-size: 22px;
+}
+
+.nosotras-section h2{
+    
+    color: #cd9b33 !important;
+    font-family: 'KaushanScript-Regular', serif;
+    font-size: 50px;
+    transform: translateY(-70px);
+}
+
+.nosotras-text p strong{
+    color: #59C3A6 !important;
+    font-family: 'Lora-Regular', serif;
+    font-size: 28px;
+}
+
+.productos-destacados h2{
+    color: #cd9b33 !important;
+    font-family: 'KaushanScript-Regular', serif;
+    font-size: 50px;
+    text-align: center;
+    /* transform: translateY(-70px); */
+}
+
+.productos-destacados .card-body i{
+    font-size: 12px;
+    color: #EDB867;
+}
+
+.productos-destacados .card-body button{
+    font-family: 'Montserrat-Bold', sans-serif;
+    background-color: #214ABF;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    text-align: center;
+    transition: .5s ease;
+}
+
+.productos-destacados .card-body button:hover{
+    font-family: 'Montserrat-Bold', sans-serif;
+    background-color:#59C3A6;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    text-align: center;
+    transition: .5s ease;
+}
+
+.productos-destacados .card-title span{
+    font-family: 'Lora-Bold', serif;
+    font-size: 30px;
+}
+
+
+.productos-destacados .card-container{
+    /* min-height: 100%;
+    height: 100%; */
+    width: 25%;
+}
+
+.productos-destacados .card{
+    /* height: auto !important; */
+    /* border: none; */
+}

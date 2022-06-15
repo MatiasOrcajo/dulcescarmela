@@ -39,8 +39,9 @@
                     <th class="col-md-4">Descripción</th>
                     <th class="col-md-1">¿Tiene Especificaciones?</th>
                     <th class="col-md-1">Precio</th>
-                    <th class="col-md-1">¿Tiene Descuento?</th>
-                    <th class="col-md-1">Precio Descuento</th>
+                    <th class="col-md-1">Destacado</th>
+                    {{-- <th class="col-md-1">¿Tiene Descuento?</th>
+                    <th class="col-md-1">Precio Descuento</th> --}}
                     <th></th>
                     <th></th>
                   </tr>
@@ -82,8 +83,9 @@
                       <td>{{$product->description}}</td>
                       <td>{{$product->specs ? 'Sí' : 'No'}}</td>
                       <td>${{$product->price}}</td>
-                      <td>{{$product->has_discount ? 'Sí':'No'}}</td>
-                      <td>${{$product->discount_price ? $product->discount_price : ''}}</td>
+                      <td>{{$product->featured}}</td>
+                      {{-- <td>{{$product->has_discount ? 'Sí':'No'}}</td>
+                      <td>${{$product->discount_price ? $product->discount_price : ''}}</td> --}}
                       <td>
                         <a href="{{route('admin.product.show', $product->slug)}}">
                           <button class="btn btn-primary">

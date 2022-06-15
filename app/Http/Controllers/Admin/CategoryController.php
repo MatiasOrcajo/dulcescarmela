@@ -96,7 +96,7 @@ class CategoryController extends Controller
             'slug'           => Str::slug($request->title),
             'description'    => $request->description,
             'price'          => $request->price,
-            'discount_price' => $request->discount_price,
+            // 'discount_price' => $request->discount_price,
             'cover_photo'    => $request->file('cover_photo') ? $cover_photo_url : ''
         ]);
 

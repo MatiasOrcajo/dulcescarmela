@@ -80,13 +80,20 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="discount_price">Precio de descuento (si no tiene no poner nada):</label>
+                    {{-- <label for="discount_price">Precio de descuento (si no tiene no poner nada):</label>
 
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">$</div>
                         </div>
                         <input type="text" name="discount_price" id="discount_price" class="form-control" value="{{$product->discount_price}}">
+                    </div> --}}
+                    <label for="featured">Destacado:</label>
+                    <div class="input-group mb-2">
+                        <select name="featured" id="featured">
+                            <option value="si"@if($product->featured == 'si')selected @endif>Si</option>
+                            <option value="no"@if($product->featured == 'no')selected @endif>No</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group d-flex align-items-center justify-content-center">
