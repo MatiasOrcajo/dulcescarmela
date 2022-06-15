@@ -81,12 +81,11 @@
 
 
 .productos-destacados .card-container{
-    /* min-height: 100%;
-    height: 100%; */
+    height: 100%;
     width: 25%;
 }
 
-.productos-destacados .card{
+.productos-destacados .card img{
     /* height: auto !important; */
-    /* border: none; */
+    border: none;
 }

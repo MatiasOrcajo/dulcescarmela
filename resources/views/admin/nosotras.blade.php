@@ -18,7 +18,7 @@
             <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">
                     <div class="card-header">
-                        <img src="{{asset($image->image)}}" alt="" style="max-height: 800px; width: auto;">
+                        <img src="{{asset($image->image)}}" alt="" style="width: 100%;">
                     </div>
                     <div class="card-body">
                         {!!$image->text!!}

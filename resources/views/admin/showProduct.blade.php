@@ -150,11 +150,12 @@ const swiper = new Swiper('.swiper', {
 @section('css')
 <style>
     .swiper {
-        width: 800px;
-        height: 600px;
+        /* width: 800px;
+        height: 600px; */
     }
     .swiper-slide img{
         max-width: 100%;
+        /* width: 800px; */
         max-height: 100%;
         object-fit: cover
     }

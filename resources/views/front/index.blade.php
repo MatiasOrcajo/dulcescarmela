@@ -55,8 +55,8 @@
         <h2>Nuestros productos destacados</h2>
         <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
             @foreach ($featured as $product)
-                <div class="col-md-3 my-3 card-container d-flex align-items-stretch">
-                    <div class="card text-center h-100 flex-fill">
+                <div class="col-md-3 my-3 card-container d-flex align-items-center">
+                    <div class="card text-center flex-fill">
                         <img src="{{asset($product->cover_photo)}}" alt="">
                         <div class="card-body">
                             <div class="card-title">
@@ -69,11 +69,11 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                             </div>
-                            <a href="">
+                            {{-- <a href="">
                                 <button class="btn rounded-pill my-3">
                                     Ver mas
                                 </button>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
