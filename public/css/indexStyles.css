@@ -25,8 +25,8 @@
 
 .nosotras-text p{
     color: white !important;
-    font-family: 'Montserrat-Bold', serif;
-    font-size: 22px;
+    font-family: 'Lora', serif;
+    font-size: 26px;
 }
 
 .nosotras-section h2{
@@ -40,7 +40,7 @@
 .nosotras-text p strong{
     color: #59C3A6 !important;
     font-family: 'Lora-Regular', serif;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 .productos-destacados h2{
@@ -56,24 +56,6 @@
     color: #EDB867;
 }
 
-.productos-destacados .card-body button{
-    font-family: 'Montserrat-Bold', sans-serif;
-    background-color: #214ABF;
-    padding: 10px 25px 10px 25px;
-    color: white;
-    text-align: center;
-    transition: .5s ease;
-}
-
-.productos-destacados .card-body button:hover{
-    font-family: 'Montserrat-Bold', sans-serif;
-    background-color:#59C3A6;
-    padding: 10px 25px 10px 25px;
-    color: white;
-    text-align: center;
-    transition: .5s ease;
-}
-
 .productos-destacados .card-title span{
     font-family: 'Lora-Bold', serif;
     font-size: 30px;
@@ -82,10 +64,42 @@
 
 .productos-destacados .card-container{
     height: 100%;
-    width: 25%;
+    /* width: 25%; */
 }
 
-.productos-destacados .card img{
-    /* height: auto !important; */
-    border: none;
+.productos-destacados .card-container img{
+    height: 160px;
+    width: 210px;
+}
+
+.productos-destacados h3{
+    font-family: 'Lora-Regular', serif;
+    font-size: 24px;
+}
+
+.productos-destacados span{
+    font-family: 'Lora-Regular', serif;
+    font-size: 18px;
+}
+
+.productos-destacados i{
+    color: #cd9b33 !important;
+}
+
+.productos-destacados .ver-producto{
+    height: 160px;
+    width: 210px;
+    background-color: black;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.productos-destacados .ver-producto:hover{
+    opacity: .7;
+    transition: .5s ease;
+}
+
+.productos-destacados .ver-producto .lupa i{
+    font-size: 34px;
+    color: #59C3A6 !important;
 }

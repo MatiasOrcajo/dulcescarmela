@@ -53,31 +53,34 @@
 
     <div class="col-12 productos-destacados">
         <h2>Nuestros productos destacados</h2>
-        <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
-            @foreach ($featured as $product)
-                <div class="col-md-3 my-3 card-container d-flex align-items-center">
-                    <div class="card text-center flex-fill">
-                        <img src="{{asset($product->cover_photo)}}" alt="">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <span>{{$product->title}}</span>
+        <div class="container">
+            <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
+                @foreach ($featured as $product)
+                    <div class="col-md-4 my-5 card-container d-flex align-items-center position-relative flex-md-row flex-column">
+                        <div style="float: left">
+                            <img src="{{asset($product->cover_photo)}}" alt="">
+                            <div class="ver-producto position-absolute d-flex justify-content-center align-items-center" style="top: 0;">
+                                <div class="lupa">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
                             </div>
-                            <div>
+                        </div>
+                        <div class="ms-3">
+                            <div class="position-absolute" style="top: 0;">
+                                <h3 >{{$product->title}}</h3>
+                                <span>{{$product->category->name}}</span>
+                            </div>
+                            <div class="position-absolute mb-2" style="bottom: 0">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                             </div>
-                            {{-- <a href="">
-                                <button class="btn rounded-pill my-3">
-                                    Ver mas
-                                </button>
-                            </a> --}}
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
