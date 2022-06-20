@@ -57,6 +57,15 @@ Route::group(['middleware' => ['auth']], function() {
 
                 // añadir imagen de producto
                 Route::post('producto/add-image', 'Admin\ProductController@addProductImage')->name('admin.product.addProductImage');
+
+        
+           // opiniones
+
+           Route::get('opiniones', 'Admin\OpinionsController@opinions')->name('admin.opinions');
+           Route::post('opiniones/subir', 'Admin\OpinionsController@addOpinion')->name('admin.subirOpinion');
+           Route::put('opinion/{opinion}/edit', 'Admin\OpinionsController@editOpinion')->name('admin.editarOpinion');
+           Route::delete('opinion/{opinion}/delete', 'Admin\OpinionsController@deleteOpinion')->name('admin.eliminarOpinion');
+                
             
         });
 
