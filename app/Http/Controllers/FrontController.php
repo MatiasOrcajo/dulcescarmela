@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage};
+use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage, Opinion, OpinionBackground};
 
 class FrontController extends Controller
 {
@@ -17,9 +17,12 @@ class FrontController extends Controller
 
         // productos destacados
         $featured = Product::where('featured', 'si')->get();
-        
 
-        return view('front.index', compact('sliders', 'nosotras', 'featured'));
+        // opiniones
+        $opinions = Opinion::all();
+        $background = OpinionBackground::first();
+
+        return view('front.index', compact('sliders', 'nosotras', 'featured', 'opinions', 'background'));
     }
 }
 

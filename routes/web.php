@@ -65,6 +65,13 @@ Route::group(['middleware' => ['auth']], function() {
            Route::post('opiniones/subir', 'Admin\OpinionsController@addOpinion')->name('admin.subirOpinion');
            Route::put('opinion/{opinion}/edit', 'Admin\OpinionsController@editOpinion')->name('admin.editarOpinion');
            Route::delete('opinion/{opinion}/delete', 'Admin\OpinionsController@deleteOpinion')->name('admin.eliminarOpinion');
+           Route::post('opiniones/background/add', 'Admin\OpinionsController@storeBackgroundImage')->name('admin.opinions.addBackground');
+
+           // whatsapp
+
+           Route::get('whatsapp', 'Admin\WhatsAppController@whatsapp')->name('admin.whatsapp');
+           Route::post('whatsapp/create', 'Admin\WhatsAppController@addWhatsApp')->name('admin.subirWhatsApp');
+           Route::put('whatsapp/{whatsapp}/edit', 'Admin\WhatsAppController@editWhatsApp')->name('admin.editarWhatsApp');
                 
             
         });

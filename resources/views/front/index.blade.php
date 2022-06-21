@@ -67,7 +67,7 @@
                         </div>
                         <div class="ms-3">
                             <div class="position-absolute" style="top: 0;">
-                                <h3 >{{$product->title}}</h3>
+                                <h3>{{$product->title}}</h3>
                                 <span>{{$product->category->name}}</span>
                             </div>
                             <div class="position-absolute mb-2" style="bottom: 0">
@@ -80,6 +80,18 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-12 testimonios">
+        <div class="container">
+            <div style="background-image: {{asset($background->image)}};
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center;" class="h-100 w-100">
+
             </div>
         </div>
     </div>

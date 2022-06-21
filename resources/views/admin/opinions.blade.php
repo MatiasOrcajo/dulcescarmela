@@ -35,6 +35,14 @@
                 </button>
             </div>
         @endif
+        @if(session('success') && session('success') == 'background_added')
+            <div class="alert alert-dismiss alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert">
+                <h4>Listo!</h4>
+                <p>Background añadido</p>
+                </button>
+            </div>
+        @endif
         @if (count($errors))
             @if ($errors->get('name'))
                 @foreach ($errors->get('name') as $error)
@@ -53,6 +61,25 @@
             @endif
         @endif
         <div class="col-12 d-flex flex-wrap">
+            <div class="col-12 mt-3 pl-0 d-flex flex-column">
+                <span>Imagen de fondo:</span>
+                @if($background)
+                    <div class="col-md-4 mt-3 pl-0 mb-3">
+                        <img src="{{asset($background->image)}}" alt="" style="max-width: 100%;">    
+                    </div>                
+                @endif
+
+                <form action="{{route('admin.opinions.addBackground')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="image">
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-success">
+                        Guardar Imagen de Fondo
+                    </button>
+                </form>
+            </div>
+            
             @forelse ($opinions as $opinion)
             <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">

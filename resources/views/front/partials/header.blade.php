@@ -27,7 +27,7 @@
                 <a class="nav-link">Categorías</a>
             </li>  
             <li class="nav-item mx-5">
-                <a class="nav-link">Opiniones</a>
+                <a class="nav-link">Testimonios</a>
             </li>  
             <li class="nav-item mx-5">
                 <a class="nav-link">Contacto</a>

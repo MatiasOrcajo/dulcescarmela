@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use App\Models\Opinion;
+use App\Models\{Opinion, OpinionBackground};
 use Illuminate\Support\Facades\Validator;
 
 class OpinionsController extends Controller
@@ -15,8 +15,9 @@ class OpinionsController extends Controller
     {
 
         $opinions = Opinion::all();
+        $background = OpinionBackground::first();
 
-        return view('admin.opinions', compact('opinions'));
+        return view('admin.opinions', compact('opinions', 'background'));
     }
 
     public function addOpinion(Request $request)
@@ -72,6 +73,55 @@ class OpinionsController extends Controller
         $opinion->delete();
         
         return redirect()->back()->with('success', 'deleted');
+    }
+
+    public function storeBackgroundImage(Request $request)
+    {
+        if(OpinionBackground::first()){
+            $validator = Validator::make($request->all(),[
+                'image'   => 'required|mimes:png,jpg,jpeg'
+            ]);
+    
+            if($validator->fails()){
+                return redirect()->back()
+                                 ->withErrors($validator)
+                                 ->withInput();
+            }
+
+            $image = $request->file('image')->store('public/images');
+            $url   = Storage::url($image);
+
+            $background = OpinionBackground::first();
+
+            if(File::exists(public_path($background->image))){
+                File::delete(public_path($background->image));
+            }
+
+            $background->update([
+                'image' => $url
+            ]);
+
+            return redirect()->back()->with('success', 'background_added');
+        }
+        
+        $validator = Validator::make($request->all(),[
+            'image'   => 'required|mimes:png,jpg,jpeg'
+        ]);
+
+        if($validator->fails()){
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
+        $image = $request->file('image')->store('public/images');
+        $url   = Storage::url($image);
+
+        $background = OpinionBackground::create([
+            'image' => $url
+        ]);
+
+        return redirect()->back()->with('success', 'background_added');
     }
 
 
