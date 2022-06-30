@@ -51,7 +51,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#214abf" fill-opacity="1" d="M0,288L26.7,277.3C53.3,267,107,245,160,240C213.3,235,267,245,320,229.3C373.3,213,427,171,480,144C533.3,117,587,107,640,112C693.3,117,747,139,800,128C853.3,117,907,75,960,85.3C1013.3,96,1067,160,1120,165.3C1173.3,171,1227,117,1280,106.7C1333.3,96,1387,128,1413,144L1440,160L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path></svg>
     </div>
 
-    <div class="col-12 productos-destacados">
+    <div class="col-12 productos-destacados my-5">
         <h2>Nuestros productos destacados</h2>
         <div class="container">
             <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
@@ -85,13 +85,40 @@
     </div>
 
 
-    <div class="col-12 testimonios">
-        <div class="container">
-            <div style="background-image: {{asset($background->image)}};
+    <div class="col-12 testimonios my-5">
+        <div class="w-100 d-flex justify-content-center align-items-center">
+            <div style="background-image: url({{asset($background->image)}});
                         background-size: cover;
                         background-repeat: no-repeat;
-                        background-position: center;" class="h-100 w-100">
-
+                        background-position: center;" class="background-testimonios d-flex justify-content-center align-items-center">
+                <div class="w-50 h-75 opinion-container">
+                    <div class="swiper2">
+                        <div class="swiper-wrapper">
+                            @foreach ($opinions as $opinion)
+                        
+                            <div class="opinion-image swiper-slide d-flex justify-content-center align-items-center flex-column">
+                                <img class="position-absolute" src="{{asset($opinion->image)}}" alt="">
+                                <div class="opinion-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="opinion-text mt-5 px-md-5 px-2 text-center">
+                                    <p>“{{$opinion->content}}”</p>
+                                </div>
+                                <div class="opinion-separator mt-5"></div>
+                                <div class="opinion-name text-center mt-5">
+                                    <strong>{{$opinion->name}}</strong>
+                                </div>
+                            </div>
+                        
+                            @endforeach
+                        </div>
+                        <div class="swiper-pagination2 d-flex justify-content-center align-items-center" style="margin: 0 auto"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -121,9 +148,9 @@ const swiper = new Swiper('.swiper', {
   },
 
   // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
+//   pagination: {
+//     el: '.swiper-pagination',
+//   },
 
   // Navigation arrows
 //   navigation: {
@@ -132,9 +159,35 @@ const swiper = new Swiper('.swiper', {
 //   },
 
   // And if we need scrollbar
-  scrollbar: {
-    el: '.swiper-scrollbar',
-  },
+//   scrollbar: {
+//     el: '.swiper-scrollbar',
+//   },
   effect: "fade",
+});
+
+
+const swiper2 = new Swiper('.swiper2', {
+  // Optional parameters
+  direction: 'horizontal',
+  loop: true,
+  autoplay: {
+    delay: 6000,
+  },
+  slidesPerView: 1,
+
+  // If we need pagination
+  pagination: {
+    el: ".swiper-pagination2",
+    dynamicBullets: true,
+  },
+
+  // And if we need scrollbar
+//   scrollbar: {
+//     el: '.swiper-scrollbar',
+//   },
+  effect: "fade",
+  fadeEffect: {
+    crossFade: true
+  }
 });
 </script>

@@ -70,6 +70,7 @@
 .productos-destacados .card-container img{
     height: 160px;
     width: 210px;
+    box-shadow: 3px 4px 15px -6px #000000;
 }
 
 .productos-destacados h3{
@@ -102,5 +103,75 @@
 .productos-destacados .ver-producto .lupa i{
     font-size: 34px;
     color: #59C3A6 !important;
+}
+
+.background-testimonios{
+    height: 693px;
+    width: 100%;
+    background-attachment: fixed;
+}
+
+@media(max-width: 1600px){
+    .background-testimonios{
+        height: 593px;
+        width: 1280px;
+    }
+}
+
+.opinion-container{
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.swiper-pagination-bullets-dynamic {
+    transform: translateX(0%)!important;
+}
+
+.opinion-image img{
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    top: 0;
+    transform: translateY(-50px);
+    border: 2px solid #59C3A6;
+}
+
+.opinion-stars{
+    /* margin-bottom: 100px; */
+    position: absolute;
+    top: 0;
+    margin-top: 100px;
+}
+
+.opinion-stars i{
+    color: #cd9b33 !important;
+    font-size: 24px;
+}
+
+.opinion-text p{
+    font-size: 28px;
+    line-height: 1.8em;
+    color: #3c3c3c;
+    font-family: 'Lora', serif;
+}
+
+.opinion-separator{
+    width: 40%;
+    margin: 0 auto;
+    height: 2px;
+    background-color: #59C3A6;
+}
+
+.opinion-name strong{
+    font-family: 'Lora', serif;
+    font-size: 20px;
+}
+
+.swiper-pagination2{
+    transform: translateY(-50px)!important;
+}
+
+.swiper-pagination-bullet{
+    width: 20px !important;
+    height: 20px !important;
 }
 
