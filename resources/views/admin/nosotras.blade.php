@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    
+
 
 <div class="container-fluid">
     <div class="row">
@@ -20,7 +20,7 @@
                     <div class="card-header">
                         <img src="{{asset($image->image)}}" alt="" style="width: 100%;">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-y: scroll">
                         {!!$image->text!!}
                     </div>
                     <div class="card-footer">
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            
+
             @empty
                 <p>No se han encontrado imagenes</p>
             @endforelse
@@ -133,13 +133,6 @@
 @section('css')
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 
-    <style>
-        .swal2-styled.swal2-confirm,
-        .swal2-styled.swal2-cancel{
-            background: none !important
-        }
-    </style>
-  
 @stop
 
 @section('js')
@@ -154,7 +147,7 @@
         el.addEventListener('click', function(){
             let id = el.getAttribute('data');
             let route = '{{route('admin.nosotras.delete')}}'
-            
+
             Swal.fire({
                 title: '<strong>¿Segura de que deseas eliminar la imagen?</strong>',
                 icon: 'question',
@@ -211,7 +204,7 @@
             $('#add_image_form').submit();
         })
     })
-    
+
 // enriquecedor de texto
     document.querySelectorAll('.text').forEach(el=>{
         ClassicEditor
@@ -242,6 +235,6 @@
             console.log(error);
         })
     });
-   
+
 </script>
 @stop

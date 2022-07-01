@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function() {
 
         Route::group(['prefix' => 'admin'], function(){
-            
+
             Route::get('/dashboard', 'Admin\AdminController@index')->name('admin.dashboard');
 
             // sliders
@@ -58,7 +58,11 @@ Route::group(['middleware' => ['auth']], function() {
                 // añadir imagen de producto
                 Route::post('producto/add-image', 'Admin\ProductController@addProductImage')->name('admin.product.addProductImage');
 
-        
+            // lista de productos
+
+            Route::get('products', 'Admin\ProductController@productList')->name('admin.products');
+
+
            // opiniones
 
            Route::get('opiniones', 'Admin\OpinionsController@opinions')->name('admin.opinions');
@@ -72,8 +76,8 @@ Route::group(['middleware' => ['auth']], function() {
            Route::get('whatsapp', 'Admin\WhatsAppController@whatsapp')->name('admin.whatsapp');
            Route::post('whatsapp/create', 'Admin\WhatsAppController@addWhatsApp')->name('admin.subirWhatsApp');
            Route::put('whatsapp/{whatsapp}/edit', 'Admin\WhatsAppController@editWhatsApp')->name('admin.editarWhatsApp');
-                
-            
+
+
         });
 
 });

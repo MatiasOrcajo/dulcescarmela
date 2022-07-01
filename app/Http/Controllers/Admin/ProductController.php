@@ -33,7 +33,7 @@ class ProductController extends Controller
         }
 
         $currentCoverPhoto = $product->cover_photo;
-        
+
         $product->update([
             'category'       => $request->get('category'),
             'title'          => $request->get('title'),
@@ -98,5 +98,12 @@ class ProductController extends Controller
         ]);
 
         return back();
+    }
+
+    public function productList()
+    {
+        $products = Product::orderBy('created_at')->get();
+
+        return view('admin.products', compact('products'));
     }
 }

@@ -10,7 +10,7 @@ class FrontController extends Controller
     public function index()
     {
         // sliders
-        $sliders = Home_Slider::all();
+        $sliders = Home_Slider::orderBy('orden')->get();
 
         // nosotras
         $nosotras = Nosotra::where('active', 'Si')->first();

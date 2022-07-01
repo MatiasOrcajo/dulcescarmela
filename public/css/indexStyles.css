@@ -30,11 +30,15 @@
 }
 
 .nosotras-section h2{
-    
+
     color: #cd9b33 !important;
     font-family: 'KaushanScript-Regular', serif;
     font-size: 50px;
     transform: translateY(-70px);
+}
+
+.nosotras-section img{
+    max-width: 500px;
 }
 
 .nosotras-text p strong{
