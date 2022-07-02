@@ -179,3 +179,21 @@
     height: 20px !important;
 }
 
+.contador_cantidad{
+    font-family: 'Lora', serif;
+    font-size: 48px;
+    color: #4e4e4e;
+    font-weight: 700;
+}
+
+.counter-title{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 40px;
+    color: #979797;
+}
+
+.contadores{
+    background: #f7f7f7;
+    padding: 60px 65px 30px;
+}
+

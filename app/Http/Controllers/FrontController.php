@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage, Opinion, OpinionBackground};
+use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage, Opinion, OpinionBackground, Counter};
 
 class FrontController extends Controller
 {
@@ -22,7 +22,10 @@ class FrontController extends Controller
         $opinions = Opinion::all();
         $background = OpinionBackground::first();
 
-        return view('front.index', compact('sliders', 'nosotras', 'featured', 'opinions', 'background'));
+        // contadores
+        $counters = Counter::orderBy('created_at')->get();
+
+        return view('front.index', compact('sliders', 'nosotras', 'featured', 'opinions', 'background', 'counters'));
     }
 }
 

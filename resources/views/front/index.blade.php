@@ -61,41 +61,43 @@
             </svg>
         </div>
 
-        <div class="col-12 productos-destacados my-5">
-            <h2>Nuestros productos destacados</h2>
-            <div class="container">
-                <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
-                    @foreach ($featured as $product)
-                        <div
-                            class="col-md-4 my-5 card-container d-flex align-items-center position-relative flex-md-row flex-column">
-                            <div style="float: left">
-                                <img src="{{asset($product->cover_photo)}}" alt="">
-                                <div
-                                    class="ver-producto position-absolute d-flex justify-content-center align-items-center"
-                                    style="top: 0;">
-                                    <div class="lupa">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
+        <section>
+            <div class="col-12 productos-destacados my-5">
+                <h2>Nuestros productos destacados</h2>
+                <div class="container">
+                    <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
+                        @foreach ($featured as $product)
+                            <div
+                                class="col-md-4 my-5 card-container d-flex align-items-center position-relative flex-md-row flex-column">
+                                <div style="float: left">
+                                    <img src="{{asset($product->cover_photo)}}" alt="">
+                                    <div
+                                        class="ver-producto position-absolute d-flex justify-content-center align-items-center"
+                                        style="top: 0;">
+                                        <div class="lupa">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ms-3">
+                                    <div class="position-absolute" style="top: 0;">
+                                        <h3>{{$product->title}}</h3>
+                                        <span>{{$product->category->name}}</span>
+                                    </div>
+                                    <div class="position-absolute mb-2" style="bottom: 0">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ms-3">
-                                <div class="position-absolute" style="top: 0;">
-                                    <h3>{{$product->title}}</h3>
-                                    <span>{{$product->category->name}}</span>
-                                </div>
-                                <div class="position-absolute mb-2" style="bottom: 0">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
 
         <div class="col-12 testimonios my-5">
@@ -140,6 +142,24 @@
                 @endif
             </div>
         </div>
+
+        <section>
+            <div class="col-lg-8 contadores my-5" style="margin: 0 auto">
+                <div class="d-flex flex-lg-row flex-column justify-content-around align-items-center contador">
+                    @if(isset($counters))
+                        @foreach($counters as $counter)
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{$counter->icon}}">
+                                <div class="contador_cantidad" data-cantidad-total="{{$counter->quantity}}">
+                                    0
+                                </div>
+                                <span class="counter-title">{{$counter->title}}</span>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </section>
     </div>
 
     <style>
@@ -155,8 +175,53 @@
         }
     </style>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+
+        $(document).ready(function(){
+            const contadores = document.querySelectorAll('.contador_cantidad');
+            const velocidad = 3000;
+
+            const animarContadores = () =>{
+                for(const contador of contadores){
+                    const actualizar_contador =() =>{
+                        let cantidad_maxima = +contador.dataset.cantidadTotal,
+                            valor_actual = +contador.innerText,
+                            incremento = cantidad_maxima / velocidad;
+                        if(valor_actual < cantidad_maxima){
+                            contador.innerText = Math.ceil(valor_actual + incremento)
+                            setTimeout((actualizar_contador), 5);
+                        }else{
+                            contador.innerText = cantidad_maxima;
+
+                        }
+                    }
+                    actualizar_contador();
+                }
+            }
+
+            const mostrarContadores = elementos =>{
+                elementos.forEach(element => {
+                    if(element.isIntersecting){
+                        setTimeout(animarContadores, 300)
+                    }
+                });
+            }
+
+            const observer = new IntersectionObserver(mostrarContadores, {
+                threshold: 0 //0 - 1
+            })
+
+            const elementosHTML = document.querySelectorAll('.contador')
+            elementosHTML.forEach(elementoHTML =>{
+                observer.observe(elementoHTML)
+            })
+        })
+
+
+
         const swiper = new Swiper('.swiper', {
             // Optional parameters
             direction: 'horizontal',
