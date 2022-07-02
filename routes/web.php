@@ -77,6 +77,13 @@ Route::group(['middleware' => ['auth']], function() {
            Route::post('whatsapp/create', 'Admin\WhatsAppController@addWhatsApp')->name('admin.subirWhatsApp');
            Route::put('whatsapp/{whatsapp}/edit', 'Admin\WhatsAppController@editWhatsApp')->name('admin.editarWhatsApp');
 
+           // contadores
+
+           Route::get('contadores', 'Admin\CountersController@index')->name('admin.contadores');
+           Route::post('contadores/subir', 'Admin\CountersController@addCounter')->name('admin.subirContador');
+           Route::put('contadores/{counter}/edit', 'Admin\CountersController@editCounter')->name('admin.editarContador');
+           Route::delete('contadores/{counter}/delete', 'Admin\CountersController@deleteCounter')->name('admin.eliminarContador');
+
 
         });
 
