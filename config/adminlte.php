@@ -226,14 +226,14 @@ return [
 
     'menu' => [
         // Navbar items:
-        
+
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        
+
         ['header' => 'PANEL DE CONTROL'],
         [
             'text' => 'Pagina de Inicio',
@@ -258,6 +258,14 @@ return [
                 [
                     'text' => 'WhatsApp',
                     'url' => '/admin/whatsapp',
+                ],
+                [
+                    'text' => 'Contadores',
+                    'url' => '/admin/contadores',
+                ],
+                [
+                    'text' => 'Contacto',
+                    'url' => '/admin/contacto',
                 ]
             ]
         ],

@@ -84,6 +84,12 @@ Route::group(['middleware' => ['auth']], function() {
            Route::put('contadores/{counter}/edit', 'Admin\CountersController@editCounter')->name('admin.editarContador');
            Route::delete('contadores/{counter}/delete', 'Admin\CountersController@deleteCounter')->name('admin.eliminarContador');
 
+           // contacto
+
+            Route::get('contacto', 'Admin\ContactController@index')->name('admin.contacto');
+            Route::post('contacto/subir', 'Admin\ContactController@addContact')->name('admin.subirContacto');
+            Route::put('contacto/editar', 'Admin\ContactController@editContact')->name('admin.editarContacto');
+
 
         });
 
