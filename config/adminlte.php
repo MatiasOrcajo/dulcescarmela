@@ -252,6 +252,10 @@ return [
                     'url' => '/admin/categorias',
                 ],
                 [
+                    'text' => 'Productos',
+                    'url' => '/admin/productos',
+                ],
+                [
                     'text' => 'Opiniones',
                     'url' => '/admin/opiniones',
                 ],

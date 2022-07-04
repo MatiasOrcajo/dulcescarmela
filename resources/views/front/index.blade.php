@@ -65,7 +65,7 @@
             <div class="col-12 productos-destacados my-5">
                 <h2>Nuestros productos destacados</h2>
                 <div class="container">
-                    <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5">
+                    <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5" data-aos="zoom-in">
                         @foreach ($featured as $product)
                             <div
                                 class="col-md-4 my-5 card-container d-flex align-items-center position-relative flex-md-row flex-column">
@@ -95,6 +95,24 @@
                             </div>
                         @endforeach
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="col-md-8 contadores my-5" style="margin: 0 auto">
+                <div class="d-flex flex-md-row flex-column justify-content-around align-items-center contador">
+                    @if(isset($counters))
+                        @foreach($counters as $counter)
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="{{$counter->icon}}">
+                                <div class="contador_cantidad" data-cantidad-total="{{$counter->quantity}}">
+                                    0
+                                </div>
+                                <span class="counter-title">{{$counter->title}}</span>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>
@@ -143,26 +161,109 @@
             </div>
         </div>
 
+
         <section>
-            <div class="col-lg-8 contadores my-5" style="margin: 0 auto">
-                <div class="d-flex flex-lg-row flex-column justify-content-around align-items-center contador">
-                    @if(isset($counters))
-                        @foreach($counters as $counter)
-                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                <img src="{{$counter->icon}}">
-                                <div class="contador_cantidad" data-cantidad-total="{{$counter->quantity}}">
-                                    0
-                                </div>
-                                <span class="counter-title">{{$counter->title}}</span>
-                            </div>
-                        @endforeach
+            <div class="col-12 d-flex container my-5" data-aos="fade-up">
+                <div class="col-md-3 d-md-block d-none">
+                    @if(isset($contact))
+                        <div class="contact-container">
+                            <img src="{{asset($contact->image_1)}}" alt="imagen 1" style="width: 100%; height: 100%; object-fit: cover">
+                        </div>
                     @endif
+                </div>
+                <div class="col-md-3 d-md-block d-none">
+                    <div class="contact-container d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3 text-center">
+                            <h3 class="d-block mb-3">NUESTRA COCINA</h3>
+                            <h4 class="d-block mb-4">Biglieri 3060, Lanús</h4>
+                            <span><i class="fa-brands fa-whatsapp"></i> {{$whatsapp->number}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-md-block d-none">
+                    @if(isset($contact))
+                        <div class="contact-container">
+                            <img src="{{asset($contact->image_2)}}" alt="imagen 1" style="width: 100%; height: 100%; object-fit: cover">
+                        </div>
+                    @endif
+                </div>
+                <div class="col-md-3 d-md-block d-none">
+                    <div class="contact-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d669.9006415950307!2d-58.414326426637835!3d-34.70576021867833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcccfe2d1fb757%3A0xd5462002700a02db!2sCalle%20Dr.%20Yolivan%20Alberto%20Biglieri%203060%2C%20B1825DWP%20Lan%C3%BAs%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1656870077818!5m2!1ses!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
+
+{{--        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13125.327965428385!2d-58.34978525379637!3d-34.67156962109624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a333156977ebc1%3A0x66d3de00eb1f9d7a!2sIguaz%C3%BA%20406%2C%20B1873CFJ%20Crucecita%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1656866213436!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
+
+    </div>
+
+    <!-- top banner -->
+
+    <div class="col-12 d-flex justify-content-between align-items-center position-absolute top-banner" style="top: 0;">
+        <span class="d-block ps-5">Aprovechá nuestras ofertas por tiempo limitado</span>
+        <a href="">
+            <button class="btn d-block me-5">Ver Productos</button>
+        </a>
     </div>
 
     <style>
+
+        /**{*/
+        /*    box-sizing: border-box;*/
+        /*    background: rgb(0 100 0 / 0.1) !important;*/
+        /*}*/
+
+        .top-banner{
+            background-color: #214ABF;
+            height: 50px;
+            box-shadow: 0px 7px 12px -8px #000000;
+        }
+
+        .top-banner span{
+            font-family: 'Montserrat-Bold', serif;
+            font-size: 15px;
+            color: white;
+        }
+
+        .top-banner button{
+            background: #59C3A6;
+            /*font-family: 'Montserrat-Regular', sans-serif;*/
+            color: white;
+        }
+
+        .top-banner button:hover{
+            background: #59C3A6;
+            /*font-family: 'Montserrat-Regular', sans-serif;*/
+            color: white;
+        }
+
+        .contact-container{
+            height: 340px;
+            width: 100%;
+            background-color: #f9f9f9;
+        }
+
+        .contact-container h3{
+            font-family: 'Lora', serif;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        .contact-container h4{
+            font-family: 'Lora', serif;
+            color: #767676;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .contact-container span{
+            font-family: 'Lora', serif;
+            color: #767676;
+            font-size: 16px;
+        }
+
         .swiper {
             width: 80%;
             height: 540px;
@@ -175,25 +276,33 @@
         }
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
 
-        $(document).ready(function(){
+        AOS.init();
+
+        $(document).ready(function () {
             const contadores = document.querySelectorAll('.contador_cantidad');
             const velocidad = 3000;
 
-            const animarContadores = () =>{
-                for(const contador of contadores){
-                    const actualizar_contador =() =>{
+            const animarContadores = () => {
+                for (const contador of contadores) {
+                    const actualizar_contador = () => {
                         let cantidad_maxima = +contador.dataset.cantidadTotal,
                             valor_actual = +contador.innerText,
                             incremento = cantidad_maxima / velocidad;
-                        if(valor_actual < cantidad_maxima){
+                        if (valor_actual < cantidad_maxima) {
                             contador.innerText = Math.ceil(valor_actual + incremento)
                             setTimeout((actualizar_contador), 5);
-                        }else{
+                        } else {
                             contador.innerText = cantidad_maxima;
 
                         }
@@ -202,9 +311,9 @@
                 }
             }
 
-            const mostrarContadores = elementos =>{
+            const mostrarContadores = elementos => {
                 elementos.forEach(element => {
-                    if(element.isIntersecting){
+                    if (element.isIntersecting) {
                         setTimeout(animarContadores, 300)
                     }
                 });
@@ -215,11 +324,10 @@
             })
 
             const elementosHTML = document.querySelectorAll('.contador')
-            elementosHTML.forEach(elementoHTML =>{
+            elementosHTML.forEach(elementoHTML => {
                 observer.observe(elementoHTML)
             })
         })
-
 
 
         const swiper = new Swiper('.swiper', {

@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth']], function() {
 
             // lista de productos
 
-            Route::get('products', 'Admin\ProductController@productList')->name('admin.products');
+            Route::get('productos', 'Admin\ProductController@productList')->name('admin.products');
 
 
            // opiniones

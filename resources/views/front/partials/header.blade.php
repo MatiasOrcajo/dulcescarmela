@@ -7,7 +7,7 @@
         </div>
     </div> -->
     <!-- navbar desktop -->
-    <div class="m-0 p-0">
+    <div class="m-0 mt-md-5 p-0">
         <div class="d-flex justify-content-center align-items-center">
             <a class="d-flex mt-5 justify-content-center align-items-center" href="#">
                 <img src="/images/dulces_carmela_logo.jpg" alt="" width="150" height="150">
@@ -19,19 +19,19 @@
             </li>
             <li class="nav-item mx-5">
                 <a class="nav-link">Nosotras</a>
-            </li>   
+            </li>
             <li class="nav-item mx-5">
                 <a class="nav-link">Productos</a>
-            </li>  
+            </li>
             <li class="nav-item mx-5">
                 <a class="nav-link">Categorías</a>
-            </li>  
+            </li>
             <li class="nav-item mx-5">
                 <a class="nav-link">Testimonios</a>
-            </li>  
+            </li>
             <li class="nav-item mx-5">
                 <a class="nav-link">Contacto</a>
-            </li>    
+            </li>
         </ul>
     </div>
 </div>

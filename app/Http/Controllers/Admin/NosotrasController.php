@@ -23,32 +23,35 @@ class NosotrasController extends Controller
         {
             $imagen = Nosotra::where('id', $request->edit)->first();
 
-            if($request->hasFile('imagen'))
-            {
-                $image = $request->file('imagen')->store('public/images');
-                $url = Storage::url($image);
-            }
-            
+//            if($request->hasFile('imagen'))
+//            {
+//                $image = $request->file('imagen')->store('public/images');
+//                $url = Storage::url($image);
+//            }
+
             $imagen->update([
                 "text"   => $request->texto,
-                "active" => $request->active,
-                "image"  => $request->has('imagen') ? $url : $imagen->image
             ]);
 
             return redirect()->back();
         }
 
-        $image = $request->file('imagen')->store('public/images');
-        $url = Storage::url($image);
+//        $image = $request->file('imagen')->store('public/images');
+//        $url = Storage::url($image);
 
         $nosotras         = new Nosotra;
-        $nosotras->image  = $url;
+//        $nosotras->image  = $url;
         $nosotras->text   = $request->texto;
-        $nosotras->active = $request->active;
+//        $nosotras->active = $request->active;
 
         $nosotras->save();
-        
+
         return redirect()->back();
+    }
+
+    public function addImage(Request $request)
+    {
+        
     }
 
     public function deleteNosotrasImage(Request $request)
@@ -56,7 +59,7 @@ class NosotrasController extends Controller
         $id = $request->get('id');
 
         $image = Nosotra::where('id', $id)->delete();
-        
+
         return false;
     }
 }

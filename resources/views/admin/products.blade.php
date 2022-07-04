@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-12 d-flex flex-wrap justify-content-center align-items-center">
 
-                <table id="products" class="table display">
+                <table id="products" class="table display w-100">
                     <thead>
                     <tr>
                         <th></th>
@@ -90,6 +90,12 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .dataTables_wrapper{
+            width: 100% !important;
+        }
+    </style>
 
 @stop
 

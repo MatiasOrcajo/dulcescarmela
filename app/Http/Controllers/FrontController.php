@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage, Opinion, OpinionBackground, Counter};
+use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage, Opinion, OpinionBackground, Counter, Contact, WhatsApp};
 
 class FrontController extends Controller
 {
@@ -25,7 +25,14 @@ class FrontController extends Controller
         // contadores
         $counters = Counter::orderBy('created_at')->get();
 
-        return view('front.index', compact('sliders', 'nosotras', 'featured', 'opinions', 'background', 'counters'));
+        // contacto
+        $contact = Contact::first();
+
+        // whatsapp
+
+        $whatsapp = WhatsApp::first();
+
+        return view('front.index', compact('sliders', 'nosotras', 'featured', 'opinions', 'background', 'counters', 'contact', 'whatsapp'));
     }
 }
 

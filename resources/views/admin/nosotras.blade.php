@@ -13,7 +13,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 d-flex flex-wrap">
+        <div class="col-6 d-flex flex-wrap">
             @forelse ($images as $image)
             <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">
@@ -78,14 +78,14 @@
 
 
             @empty
-                <p>No se han encontrado imagenes</p>
+                <p>No se ha encontrado ningún texto</p>
             @endforelse
         </div>
     </div>
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary my-5" data-toggle="modal" data-target="#exampleModal">
-        Agregar Imagen
+        Agregar Texto
     </button>
 
     <!-- Modal -->
@@ -104,16 +104,6 @@
                         <div class="form-group">
                             <label for="texto">Texto</label>
                             <textarea type="text" class="text" class="form-control" name="texto" cols="30" rows="30"></textarea>
-                        </div>
-                        <div class="form-group mt-5">
-                            <input type="file" name="imagen">
-                        </div>
-                        <div class="form-group mt-5">
-                            <label for="visible">Visible:</label>
-                            <select name="active" id="">
-                                <option value="Si">Si</option>
-                                <option value="No">No</option>
-                            </select>
                         </div>
 
                         <div class="modal-footer">

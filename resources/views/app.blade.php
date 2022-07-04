@@ -27,6 +27,8 @@
     <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/indexStyles.css') }}" rel="stylesheet">
 
+{{--    aos--}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <style>
     body{
@@ -38,8 +40,7 @@
 
 
 
-    <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     {{-- @if($body && !\Illuminate\Support\Facades\Auth::user())
         {!!$body!!}
     @endif --}}
