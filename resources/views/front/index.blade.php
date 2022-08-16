@@ -12,7 +12,7 @@
                                 <span>Todos los días hacemos</span>
                                 <h2>{{$slider->texto}}</h2>
 
-                                <a href="">
+                                <a href="{{route('front.showProduct', $slider->product()->slug)}}">
                                     <button class="btn rounded-pill mt-4">
                                         Comprar ahora
                                     </button>
@@ -176,7 +176,7 @@
                         <div class="p-3 text-center">
                             <h3 class="d-block mb-3">NUESTRA COCINA</h3>
                             <h4 class="d-block mb-4">Biglieri 3060, Lanús</h4>
-                            <span><i class="fa-brands fa-whatsapp"></i> {{$whatsapp->number}}</span>
+                            <span><i class="fa-brands fa-whatsapp"></i> @if(isset($whatsapp)){{$whatsapp->number}} @endif</span>
                         </div>
                     </div>
                 </div>
@@ -199,14 +199,6 @@
 
     </div>
 
-    <!-- top banner -->
-
-    <div class="col-12 d-flex justify-content-between align-items-center position-absolute top-banner" style="top: 0;">
-        <span class="d-block ps-5">Aprovechá nuestras ofertas por tiempo limitado</span>
-        <a href="">
-            <button class="btn d-block me-5">Ver Productos</button>
-        </a>
-    </div>
 
     <style>
 
@@ -215,29 +207,7 @@
         /*    background: rgb(0 100 0 / 0.1) !important;*/
         /*}*/
 
-        .top-banner{
-            background-color: #214ABF;
-            height: 50px;
-            box-shadow: 0px 7px 12px -8px #000000;
-        }
 
-        .top-banner span{
-            font-family: 'Montserrat-Bold', serif;
-            font-size: 15px;
-            color: white;
-        }
-
-        .top-banner button{
-            background: #59C3A6;
-            /*font-family: 'Montserrat-Regular', sans-serif;*/
-            color: white;
-        }
-
-        .top-banner button:hover{
-            background: #59C3A6;
-            /*font-family: 'Montserrat-Regular', sans-serif;*/
-            color: white;
-        }
 
         .contact-container{
             height: 340px;

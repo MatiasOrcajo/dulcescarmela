@@ -9,8 +9,10 @@ class Home_Slider extends Model
 {
     protected $table = "home_sliders";
     protected $fillable = ["texto", "orden", "product_id", "image"];
-
-    
-
     use HasFactory;
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class)->first();
+    }
 }

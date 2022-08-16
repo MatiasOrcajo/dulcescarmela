@@ -14,30 +14,61 @@
             </a>
         </div>
         <ul class="me-auto mt-2 d-flex justify-content-center align-items-center mb-2 mb-lg-0">
-            <li class="nav-item mx-5">
+            <li class="nav-item mx-3">
                 <a class="nav-link active" aria-current="page">Home</a>
             </li>
-            <li class="nav-item mx-5">
+            <li class="nav-item mx-3">
                 <a class="nav-link">Nosotras</a>
             </li>
-            <li class="nav-item mx-5">
+            <li class="nav-item mx-3">
                 <a class="nav-link">Productos</a>
             </li>
-            <li class="nav-item mx-5">
+            <li class="nav-item mx-3">
                 <a class="nav-link">Categorías</a>
             </li>
-            <li class="nav-item mx-5">
+            <li class="nav-item mx-3">
                 <a class="nav-link">Testimonios</a>
             </li>
-            <li class="nav-item mx-5">
+            <li class="nav-item mx-3">
                 <a class="nav-link">Contacto</a>
             </li>
         </ul>
     </div>
 </div>
+<!-- top banner -->
+
+<div class="col-12 d-flex justify-content-between align-items-center position-absolute top-banner" style="top: 0;">
+    <span class="d-block ps-5">Aprovechá nuestras ofertas por tiempo limitado</span>
+    <a href="">
+        <button class="btn d-block me-5">Ver Productos</button>
+    </a>
+</div>
 
 
 <style scoped>
+    .top-banner{
+        background-color: #214ABF;
+        height: 50px;
+        box-shadow: 0px 7px 12px -8px #000000;
+    }
+
+    .top-banner span{
+        font-family: 'Montserrat-Bold', serif;
+        font-size: 15px;
+        color: white;
+    }
+
+    .top-banner button{
+        background: #59C3A6;
+        /*font-family: 'Montserrat-Regular', sans-serif;*/
+        color: white;
+    }
+
+    .top-banner button:hover{
+        background: #59C3A6;
+        /*font-family: 'Montserrat-Regular', sans-serif;*/
+        color: white;
+    }
 /* main color: #59C3A6 */
 /* blue color: #214ABF */
     .navbar-brand img{

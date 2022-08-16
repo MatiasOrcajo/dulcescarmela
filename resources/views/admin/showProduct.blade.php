@@ -35,7 +35,7 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
                     @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
-            
+
                 <!-- If we need navigation buttons -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -67,7 +67,7 @@ href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
                     <label for="description">Descripción:</label>
                     <br>
                     {{-- <input type="text" name="description" id="description" class="form-control" value="{{$product->description}}"> --}}
-                    <textarea name="description" id="description" style="width: 100%"rows="10">{{$product->description}}</textarea>
+                    <textarea name="description" id="description" style="width: 100%"rows="10" class="text">{!! $product->description !!}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="price">Precio:</label>
@@ -160,7 +160,43 @@ const swiper = new Swiper('.swiper', {
         object-fit: cover
     }
 </style>
-  
+
 @stop
 
 @section('js')
+
+    <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+    <script>
+        // enriquecedor de texto
+        document.querySelectorAll('.text').forEach(el=>{
+            ClassicEditor
+                .create(el,
+                    {
+                        toolbar:[
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'fontFamily',
+                            'fontColor',
+                            'fontSize',
+                            'bulletedList',
+                            'numberedList',
+                            '|',
+                            'outdent',
+                            'indent',
+                            '|',
+                            'blockQuote',
+                            'undo',
+                            'redo',
+                            'fontBackgroundColor'
+                        ],
+                        language: 'es',
+                    })
+                .catch(error => {
+                    console.log(error);
+                })
+        });
+    </script>
+
+    @stop

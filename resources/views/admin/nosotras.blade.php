@@ -15,16 +15,13 @@
     <div class="row">
         <div class="col-6 d-flex flex-wrap">
             @forelse ($images as $image)
-            <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
+            <div class="col-12 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">
                     <div class="card-header">
                         <img src="{{asset($image->image)}}" alt="" style="width: 100%;">
                     </div>
                     <div class="card-body" style="overflow-y: scroll">
                         {!!$image->text!!}
-                    </div>
-                    <div class="card-footer">
-                        Activo: {{$image->active}}
                     </div>
                 </div>
                 <button type="button" id="delete_image" data="{{$image->id}}" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">
@@ -58,13 +55,6 @@
                                 <div class="form-group mt-5">
                                     <input type="file" name="imagen">
                                 </div>
-                                <div class="form-group mt-5">
-                                    <label for="visible">Visible:</label>
-                                    <select name="active" id="">
-                                        <option value="Si" {{$image->active == App\Models\Constants::IMAGE_IS_ACTIVE ? 'selected' : ''}}>Si</option>
-                                        <option value="No" {{$image->active == App\Models\Constants::IMAGE_IS_INACTIVE ? 'selected' : ''}}>No</option>
-                                    </select>
-                                </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -84,9 +74,11 @@
     </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary my-5" data-toggle="modal" data-target="#exampleModal">
-        Agregar Texto
-    </button>
+    @if(!isset($image))
+        <button type="button" class="btn btn-primary my-5" data-toggle="modal" data-target="#exampleModal">
+            Agregar Texto
+        </button>
+    @endif
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

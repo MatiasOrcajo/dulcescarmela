@@ -99,5 +99,6 @@ Route::group(['middleware' => ['auth']], function() {
 // RUTAS PUBLICAS
 
 Route::get('/', 'FrontController@index')->name('front.index');
+Route::get('/producto/{slug}', 'FrontController@showProduct')->name('front.showProduct');
 
 require __DIR__.'/auth.php';

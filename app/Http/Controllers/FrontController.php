@@ -13,7 +13,7 @@ class FrontController extends Controller
         $sliders = Home_Slider::orderBy('orden')->get();
 
         // nosotras
-        $nosotras = Nosotra::where('active', 'Si')->first();
+        $nosotras = Nosotra::first();
 
         // productos destacados
         $featured = Product::where('featured', 'si')->get();
@@ -34,6 +34,18 @@ class FrontController extends Controller
 
         return view('front.index', compact('sliders', 'nosotras', 'featured', 'opinions', 'background', 'counters', 'contact', 'whatsapp'));
     }
+
+    // vista individual de producto
+
+    public function showProduct($slug)
+    {
+        $whatsapp     = WhatsApp::first();
+        $product      = Product::where('slug', $slug)->first();
+        $whatsappText = $whatsapp->generateText($product->title, $whatsapp->text);
+
+        return view('front.showProduct', compact('product', 'whatsappText'));
+    }
+
 }
 
 

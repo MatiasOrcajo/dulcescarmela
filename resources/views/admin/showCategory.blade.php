@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-    
+
 @if(session('success') && session('success') == 'Added')
   <div class="alert alert-dismiss alert-success">
     <button type="button" class="btn-close" data-bs-dismiss="alert">
@@ -63,9 +63,9 @@
                                   <form action="{{route('admin.product.delete', $product->id)}}" method="POST" enctype="multipart/form-data">
                                       @method('DELETE')
                                       @csrf
-                                      
+
                                       <h3>¿Segura que deseas eliminar el producto {{$product->title}}?</h3>
-                  
+
                                       <div class="modal-footer p-0 mt-4">
                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                           <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -129,7 +129,8 @@
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Titulo">
               </div>
               <div class="form-group">
-                <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Descripción" cols="30" rows="10"></textarea>
+                  <label>Usar el editor de texto solo para hacer saltos de línea</label>
+                <textarea class="form-control text @error('description') is-invalid @enderror" name="description" placeholder="Descripción" cols="30" rows="10"></textarea>
               </div>
 
               {{-- 14/5/2022 Queda ver el tema "especificaciones", creo es mejor verlo una vez la web esté en producción --}}
@@ -165,7 +166,41 @@
 @stop
 
 @section('css')
-  
+
 @stop
 
 @section('js')
+    <script src="{{asset('ckeditor/build/ckeditor.js')}}"></script>
+    <script>
+        // enriquecedor de texto
+        document.querySelectorAll('.text').forEach(el=>{
+            ClassicEditor
+                .create(el,
+                    {
+                        toolbar:[
+                            'heading',
+                            '|',
+                            'bold',
+                            'italic',
+                            'fontFamily',
+                            'fontColor',
+                            'fontSize',
+                            'bulletedList',
+                            'numberedList',
+                            '|',
+                            'outdent',
+                            'indent',
+                            '|',
+                            'blockQuote',
+                            'undo',
+                            'redo',
+                            'fontBackgroundColor'
+                        ],
+                        language: 'es',
+                    })
+                .catch(error => {
+                    console.log(error);
+                })
+        });
+    </script>
+@stop
