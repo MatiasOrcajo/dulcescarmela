@@ -43,7 +43,18 @@ class FrontController extends Controller
         $product      = Product::where('slug', $slug)->first();
         $whatsappText = $whatsapp->generateText($product->title, $whatsapp->text);
 
-        return view('front.showProduct', compact('product', 'whatsappText'));
+        return view('front.showProduct', compact('product', 'whatsappText', 'whatsapp'));
+    }
+
+    // todos los productos
+
+    public function products()
+    {
+        $products = Product::orderBy('title', 'ASC')->get();
+        $whatsapp = WhatsApp::first();
+        $categories = Category::orderBy('name', 'ASC')->get();
+
+        return view('front.products', compact('products', 'whatsapp', 'categories'));
     }
 
 }

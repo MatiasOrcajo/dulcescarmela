@@ -37,13 +37,20 @@
 </style>
 <body>
     @yield('content')
-
+    @include('front.partials.footer')
 
 
 
     {{-- @if($body && !\Illuminate\Support\Facades\Auth::user())
         {!!$body!!}
     @endif --}}
+
+<style>
+   /** *{
+        box-sizing: border-box;
+        background: rgb(0 100 0 / 0.05)!important;
+    }
+</style>
 </body>
 
 </html>

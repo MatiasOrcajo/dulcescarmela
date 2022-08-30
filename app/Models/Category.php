@@ -18,6 +18,11 @@ class Category extends Model
         return Str::slug($this->name);
     }
 
+    public function countProducts(): int
+    {
+        return count($this->products);
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);

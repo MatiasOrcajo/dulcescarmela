@@ -100,5 +100,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('/', 'FrontController@index')->name('front.index');
 Route::get('/producto/{slug}', 'FrontController@showProduct')->name('front.showProduct');
+Route::get('/productos', 'FrontController@products')->name('front.products');
 
 require __DIR__.'/auth.php';
