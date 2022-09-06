@@ -12,7 +12,7 @@
             <div class="col-md-2 mt-5 ps-5">
                 <aside class="categorias-aside">
 
-                    <div style="border-bottom: 1px solid #e5e5e5;" class="pb-3">
+                    <div style="border-bottom: 1px solid #214ABF;" class="pb-3">
                         <form>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="buscador" placeholder="Buscar Producto">
@@ -20,14 +20,14 @@
                         </form>
                     </div>
 
-                    <div style="border-bottom: 1px solid #e5e5e5;" class="pb-3 pt-4">
+                    <div style="border-bottom: 1px solid #214ABF;" class="pb-3 pt-4">
                         <div>
                             <h3>CATEGORÍAS</h3>
                         </div>
                         @foreach($categories as $category)
                             <div class="form-check my-2">
                                 <input class="form-check-input category-input" type="checkbox" value="{{$category->id}}"
-                                       id="{{$category->id}}">
+                                       id="{{$category->id}}" name="category_checkbox">
                                 <label class="form-check-label" for="{{$category->id}}">
                                     {{$category->name}} ({{$category->countProducts()}})
                                 </label>
@@ -92,6 +92,8 @@
             box-shadow: 2px 5px 8px -6px #000000;
            -webkit-box-shadow: 2px 5px 8px -6px #000000;
             -moz-box-shadow: 2px 5px 8px -6px #000000;
+            border-radius: 20px;
+            overflow: hidden;
         }
 
         .product-list-container img{
@@ -113,5 +115,20 @@
 
 
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+        function queryCheckbox(){
+
+            $('.category-input').each(function(index, el){
+                el.addEventListener('click', function(e){
+                    let checkbox = $("input[name='category_checkbox']")
+                    console.log(checkbox.filter(':checked'))
+                })
+            })
+        }
+        queryCheckbox();
+    </script>
 
 

@@ -36,6 +36,7 @@
     }
 </style>
 <body>
+
     @yield('content')
     @include('front.partials.footer')
 
