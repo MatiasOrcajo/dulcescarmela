@@ -27,7 +27,7 @@
                         @foreach($categories as $category)
                             <div class="form-check my-2">
                                 <input class="form-check-input category-input" type="checkbox" value="{{$category->id}}"
-                                       id="{{$category->id}}" name="category_checkbox">
+                                       id="{{$category->id}}" name="category_checkbox" onclick="queryCheckbox()">
                                 <label class="form-check-label" for="{{$category->id}}">
                                     {{$category->name}} ({{$category->countProducts()}})
                                 </label>
@@ -119,16 +119,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <script>
+
+        function getBaseURL () {
+            return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
+        }
+
         function queryCheckbox(){
 
-            $('.category-input').each(function(index, el){
-                el.addEventListener('click', function(e){
-                    let checkbox = $("input[name='category_checkbox']")
-                    console.log(checkbox.filter(':checked'))
-                })
+            let categories = []
+            let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                categories.push(checkboxes[i].value)
+            }
+
+            $.ajaxSetup({headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}});
+            $.ajax({
+                type: "GET",
+                url: getBaseURL()+'filtrar-productos',
+                data: {categories: categories},
+                dataType: 'json',
+                cache: false,
+                success: function (data){
+                     console.log(data);
+                },
+                error: function (err){
+                    console.log(err);
+                }
             })
         }
-        queryCheckbox();
     </script>
 
 

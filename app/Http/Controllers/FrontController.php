@@ -57,6 +57,19 @@ class FrontController extends Controller
         return view('front.products', compact('products', 'whatsapp', 'categories'));
     }
 
+    public function filterProducts(Request $request)
+    {
+        $array_products = [];
+
+        if(count($request->categories)){
+            foreach ($request->categories as $category){
+                $products = Product::where('category_id', $category)->get();
+                $array_products[] = $products;
+            }
+        }
+        dd($array_products);
+    }
+
 }
 
 
