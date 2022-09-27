@@ -3,7 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage, Opinion, OpinionBackground, Counter, Contact, WhatsApp};
+use App\Models\{Home_Slider,
+    Nosotra,
+    Category,
+    Constants,
+    Product,
+    ProductImage,
+    Opinion,
+    OpinionBackground,
+    Counter,
+    Contact,
+    WhatsApp};
 
 class FrontController extends Controller
 {
@@ -39,8 +49,8 @@ class FrontController extends Controller
 
     public function showProduct($slug)
     {
-        $whatsapp     = WhatsApp::first();
-        $product      = Product::where('slug', $slug)->first();
+        $whatsapp = WhatsApp::first();
+        $product = Product::where('slug', $slug)->first();
         $whatsappText = $whatsapp->generateText($product->title, $whatsapp->text);
 
         return view('front.showProduct', compact('product', 'whatsappText', 'whatsapp'));
@@ -61,13 +71,36 @@ class FrontController extends Controller
     {
         $array_products = [];
 
-        if(count($request->categories)){
-            foreach ($request->categories as $category){
+        if (isset($request->categories) && count($request->categories)) {
+            foreach ($request->categories as $category) {
                 $products = Product::where('category_id', $category)->get();
-                $array_products[] = $products;
+                foreach ($products as $product) {
+                    $array_products[] = array(
+                        'title' => $product->title,
+                        'id'    => $product->id,
+                        'slug' => $product->slug,
+                        'cover' => $product->cover_photo,
+                        'category' => $product->category->name
+                    );
+                }
             }
         }
-        dd($array_products);
+
+        if(! isset($request->categories)){
+            $products = Product::all();
+
+            foreach ($products as $product) {
+                $array_products[] = array(
+                    'title' => $product->title,
+                    'id'    => $product->id,
+                    'slug' => $product->slug,
+                    'cover' => $product->cover_photo,
+                    'category' => $product->category->name
+                );
+            }
+        }
+
+        return response()->json($array_products);
     }
 
 }

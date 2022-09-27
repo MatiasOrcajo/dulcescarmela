@@ -89,22 +89,6 @@
         position: relative
     }
 
-    li:before{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        width:0%;
-        height: 2px;
-        background: #214ABF;
-        transition: .5s ease;
-    }
-
-    li:hover:before{
-        width: 100%;
-        background: #214ABF;
-        transition: .5s ease;
-    }
-
     li:hover{
         cursor: pointer;
     }

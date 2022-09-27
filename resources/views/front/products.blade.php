@@ -2,8 +2,8 @@
 @include('front.partials.productHeader')
 @section('content')
 
-    <h1>Productos y Categorías</h1>
-    <span>Home > Productos | Categorías</span>
+    <h1>Productos</h1>
+    <span>Home > Productos</span>
     </div>
     </div>
 
@@ -15,7 +15,8 @@
                     <div style="border-bottom: 1px solid #214ABF;" class="pb-3">
                         <form>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="buscador" placeholder="Buscar Producto">
+                                <input type="text" class="form-control" id="search_product"
+                                       placeholder="Buscar Producto">
                             </div>
                         </form>
                     </div>
@@ -37,7 +38,8 @@
                 </aside>
             </div>
 
-            <div class="col-md-10 mt-5 d-flex flex-wrap justify-content-between align-items-center">
+            <div class="col-md-10 mt-5 d-flex flex-wrap justify-content-between align-items-center"
+                 id="products_container">
                 @foreach($products as $product)
                     <div class="product-list-container text-center d-flex flex-column">
                         <img src="{{$product->cover_photo}}" alt="product_image">
@@ -61,47 +63,53 @@
 
     <style>
 
-        .form-check-input[type=checkbox]{
+        .display {
+            opacity: 0;
+            visibility: hidden;
+            order: 1;
+        }
+
+        .form-check-input[type=checkbox] {
             height: 20px;
             width: 20px;
             margin: 0 auto;
         }
 
-        .categorias-aside h3{
+        .categorias-aside h3 {
             font-family: 'Lora', serif;
             font-size: 21px;
             font-weight: 700;
         }
 
-        .categorias-aside label{
+        .categorias-aside label {
             font-family: 'Lora', serif;
             font-size: 17px;
             font-weight: 400;
         }
 
-        .product-list-container h3{
+        .product-list-container h3 {
             font-family: 'Lora', serif;
             font-size: 28px;
             font-weight: 400;
         }
 
-        .product-list-container{
+        .product-list-container {
             width: 280px;
             height: 360px;
             border: 1px solid #e0e0e0;
             box-shadow: 2px 5px 8px -6px #000000;
-           -webkit-box-shadow: 2px 5px 8px -6px #000000;
+            -webkit-box-shadow: 2px 5px 8px -6px #000000;
             -moz-box-shadow: 2px 5px 8px -6px #000000;
             border-radius: 20px;
             overflow: hidden;
         }
 
-        .product-list-container img{
+        .product-list-container img {
             height: 200px;
             width: auto;
         }
 
-        .product-list-container button{
+        .product-list-container button {
             font-family: 'Montserrat-Bold', sans-serif;
             background-color: #214ABF;
             padding: 10px 25px 10px 25px;
@@ -109,7 +117,7 @@
             text-align: center;
         }
 
-        .product-list-container button:hover{
+        .product-list-container button:hover {
             color: white;
         }
 
@@ -120,34 +128,68 @@
 
     <script>
 
-        function getBaseURL () {
+        function searchProduct() {
+            document.getElementById('search_product').addEventListener('keyup', (e) => {
+                let value = e.target.value;
+                let cards = document.querySelectorAll('.product-list-container');
+                cards.forEach(card => card.textContent.toLocaleLowerCase().includes(value) ? card.classList.remove('display') : card.classList.add('display'));
+            })
+        }
+        searchProduct();
+
+        function getBaseURL() {
             return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
         }
 
-        function queryCheckbox(){
+        function getBaseURLForImages() {
+            return location.protocol + "//" + location.hostname + (location.port && ":" + location.port);
+        }
+
+        function queryCheckbox() {
 
             let categories = []
             let checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
 
-            for (var i = 0; i < checkboxes.length; i++) {
+            for (let i = 0; i < checkboxes.length; i++) {
                 categories.push(checkboxes[i].value)
             }
 
-            $.ajaxSetup({headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}});
+            $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
             $.ajax({
                 type: "GET",
-                url: getBaseURL()+'filtrar-productos',
+                url: getBaseURL() + 'filtrar-productos',
                 data: {categories: categories},
                 dataType: 'json',
                 cache: false,
-                success: function (data){
-                     console.log(data);
+                success: function (data) {
+                    $('#products_container').empty();
+                    for (product of data) {
+                        $('#products_container').append(`
+
+                         <div class="product-list-container text-center d-flex flex-column">
+                            <img src="${getBaseURLForImages() + product.cover}" alt="product_image">
+                            <h3 class="d-block mt-3 mb-2">
+                                ${product.title}
+                            </h3>
+                            <span class="d-block mb-4">
+                                ${product.category}
+                            </span>
+                            <a href="${getBaseURL() + 'producto/' + product.slug}" target="_blank">
+                                <button class="btn rounded-pill">
+                                    VER
+                                </button>
+                            </a>
+                         </div>
+
+                         `);
+                    }
                 },
-                error: function (err){
+                error: function (err) {
                     console.log(err);
                 }
             })
         }
     </script>
+@endsection
 
 
