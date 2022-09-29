@@ -1,106 +1,13 @@
-<div class="menu-hamburguesa"><span>Button</span></div>
-<div class="slide-menu">
-    <ul class="mt-2 d-flex flex-column justify-content-center align-items-center mb-2 mb-lg-0">
-        <li class="nav-item mx-3">
-            <a class="nav-link active">Home</a>
-        </li>
-        <li class="nav-item mx-3">
-            <a class="nav-link">Nosotras</a>
-        </li>
-        <li class="nav-item mx-3">
-            <a class="nav-link">Productos</a>
-        </li>
-        <li class="nav-item mx-3">
-            <a class="nav-link">Categorías</a>
-        </li>
-        <li class="nav-item mx-3">
-            <a class="nav-link">Testimonios</a>
-        </li>
-        <li class="nav-item mx-3">
-            <a class="nav-link">Contacto</a>
-        </li>
-    </ul>
-</div>
-
-<style>
-
-    .menu-hamburguesa{
-        height: 50px;
-        width: 50px;
-        background: red;
-        transform: translateX(-40%);
-        position: absolute;
-        top: 0;
-        left: 0;
-
-    }
-
-    .slide-menu{
-        height: 100vh;
-        width: 350px;
-        transition: .5s ease;
-        top: 0;
-        background: #0d6efd;
-        z-index: 999999999999999999999999999;
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-after-overflow: center;
-        transform: translateX(0px);
-    }
-
-    .slide-menu-hide{
-        height: 100vh;
-        width: 0%;
-        transition: .5s ease;
-        top: 0;
-        background: #0d6efd;
-        z-index: 999999999999999999999999999;
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-after-overflow: center;
-    }
-
-    .slide-menu li a {
-        font-family: 'Montserrat-Bold', sans-serif;
-        margin: 25px 0px 25px 0px;
-        color: white!important;
-    }
-</style>
-
-
+@include('front.partials.slidemenu')
 <div class="w-100">
     <div class="product-background position-absolute" style="z-index: 9"></div>
     <div class="container">
         <div class="m-0 mt-md-3 mb-5 p-0 d-flex justify-content-center align-items-center">
             <div class="d-flex justify-content-center align-items-center">
-                <a class="d-flex justify-content-center align-items-center" href="#">
-                    <img src="/images/dulces_carmela_logo.jpg" alt="" width="150" height="150" style="z-index: 9999">
+                <a class="d-flex justify-content-center align-items-center" href="{{route('front.index')}}">
+                    <img src="{{$logo->image}}" alt="" width="150" height="150" style="z-index: 9999">
                 </a>
             </div>
-           <!-- <ul class="me-auto mt-2 d-flex justify-content-center align-items-center mb-2 mb-lg-0" style="z-index: 9999999">
-                <li class="nav-item mx-3">
-                    <a class="nav-link active" aria-current="page">Home</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">Nosotras</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">Productos</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">Categorías</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">Testimonios</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link">Contacto</a>
-                </li>
-            </ul>-->
         </div>
 
         <div class="row">

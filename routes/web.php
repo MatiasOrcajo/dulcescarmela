@@ -90,6 +90,10 @@ Route::group(['middleware' => ['auth']], function() {
             Route::post('contacto/subir', 'Admin\ContactController@addContact')->name('admin.subirContacto');
             Route::put('contacto/editar', 'Admin\ContactController@editContact')->name('admin.editarContacto');
 
+            // agregar o cambiar imagen de la marca
+
+            Route::post('add-logo', 'Admin\AdminController@addLogo')->name('admin.logo.add');
+
 
         });
 

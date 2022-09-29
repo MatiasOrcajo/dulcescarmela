@@ -1,5 +1,6 @@
 @extends('app')
 @include('front.partials.productHeader')
+@section('title', $product->title)
 @section('content')
 
     <h1>Detalles del Producto</h1>

@@ -76,7 +76,7 @@
     <!-- Button trigger modal -->
     @if(!isset($image))
         <button type="button" class="btn btn-primary my-5" data-toggle="modal" data-target="#exampleModal">
-            Agregar Texto
+            Agregar Texto e Imagen
         </button>
     @endif
 

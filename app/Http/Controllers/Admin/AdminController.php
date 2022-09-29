@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use App\Models\{Home_Slider, Nosotra, Category, Constants, Product, ProductImage};
+use App\Models\{Home_Slider, Logo, Nosotra, Category, Constants, Product, ProductImage};
 
 class AdminController extends Controller
 {
@@ -16,19 +16,19 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    
-    
+
+
     public function homeSlider()
     {
-        
+
         $sliders = Home_Slider::orderBy('orden', 'ASC')->get();
         $products = Product::all();
 
         return view('admin.homeSlider', compact('sliders', 'products'));
     }
 
-    
-    
+
+
     public function addSlider(Request $request)
     {
         $imagen = $request->file('imagen')->store('public/images');
@@ -54,7 +54,7 @@ class AdminController extends Controller
             $slider->image = $url;
         }
 
-        
+
         $slider->texto  = $request->texto;
         $slider->orden = $request->orden;
         $slider->product_id = $request->product;
@@ -70,5 +70,30 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
-   
+
+    public function addLogo(Request $request)
+    {
+        $logo = Logo::first();
+
+        if($request->file('imagen') && !isset($logo)){
+            $imagen = $request->file('imagen')->store('public/images');
+            $url = Storage::url($imagen);
+            $logo = new Logo();
+            $logo->image = $url;
+
+            $logo->save();
+        }
+
+        if($request->file('imagen') && isset($logo)){
+            $imagen = $request->file('imagen')->store('public/images');
+            $url = Storage::url($imagen);
+            $logo = Logo::first();
+            $logo->image = $url;
+
+            $logo->save();
+        }
+
+        return back()->with('success', 'Added');
+    }
+
 }

@@ -3,7 +3,7 @@
         <div class="footer-container py-5">
             <div class="col-md-12 d-flex justify-content-center align-items-center">
                 <div class="col-md-3 footer-logo d-flex justify-content-center align-items-center flex-column">
-                    <img src="{{asset('/images/dulces_carmela_logo.jpg')}}">
+                    <img src="{{$logo->image}}">
                     <div class="d-flex justify-content-center align-items-center">
                         <a href="" target="_blank">
                             <div class="social-container me-3 d-flex justify-content-center align-items-center p-2">

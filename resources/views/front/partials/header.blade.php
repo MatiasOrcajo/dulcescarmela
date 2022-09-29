@@ -9,36 +9,16 @@
     <!-- navbar desktop -->
     <div class="m-0 mt-md-5 p-0">
         <div class="d-flex justify-content-center align-items-center">
-            <a class="d-flex mt-5 justify-content-center align-items-center" href="#">
-                <img src="/images/dulces_carmela_logo.jpg" alt="" width="150" height="150">
+            <a class="d-flex mt-5 justify-content-center align-items-center" href="{{route('front.index')}}">
+                <img src="{{$logo->image}}" alt="" width="150" height="150">
             </a>
         </div>
-        <ul class="me-auto mt-2 d-flex justify-content-center align-items-center mb-2 mb-lg-0">
-            <li class="nav-item mx-3">
-                <a class="nav-link active" aria-current="page">Home</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link">Nosotras</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link">Productos</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link">Categorías</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link">Testimonios</a>
-            </li>
-            <li class="nav-item mx-3">
-                <a class="nav-link">Contacto</a>
-            </li>
-        </ul>
     </div>
 </div>
 <!-- top banner -->
 
 <div class="col-12 d-flex justify-content-between align-items-center position-absolute top-banner" style="top: 0;">
-    <span class="d-block ps-5">Aprovechá nuestras ofertas por tiempo limitado</span>
+    <span class="d-block ps-5">Aprovechá las ofertas de Dulces Carmela por tiempo limitado</span>
     <a href="">
         <button class="btn d-block me-5">Ver Productos</button>
     </a>

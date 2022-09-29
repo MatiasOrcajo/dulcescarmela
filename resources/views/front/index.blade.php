@@ -1,5 +1,7 @@
 @extends('app')
 @include('front.partials.header')
+@include('front.partials.slidemenu')
+@section('title', 'Dulces Carmela')
 @section('content')
     <div class="row">
         <div class="col-12 my-2">
@@ -35,7 +37,7 @@
             </a> --}}
         </div>
 
-        <div class="col-12 mt-3 mb-4 nosotras-section">
+        <div class="col-12 mt-3 mb-4 nosotras-section" id="nosotras">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#214abf" fill-opacity="1"
                       d="M0,160L48,176C96,192,192,224,288,240C384,256,480,256,576,229.3C672,203,768,149,864,122.7C960,96,1056,96,1152,85.3C1248,75,1344,53,1392,42.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -62,7 +64,7 @@
         </div>
 
         <section>
-            <div class="col-12 productos-destacados my-5">
+            <div class="col-12 productos-destacados my-5" id="destacados">
                 <h2>Nuestros productos destacados</h2>
                 <div class="container">
                     <div class="row my-5 justify-content-center align-items-center flex-wrap px-md-5" data-aos="zoom-in">
@@ -118,8 +120,8 @@
         </section>
 
 
-        <div class="col-12 testimonios my-5">
-            <div class="w-100 d-flex justify-content-center align-items-center">
+        <div class="col-12 testimonios my-5" >
+            <div class="w-100 d-flex justify-content-center align-items-center" id="testimonios">
                 @if(isset($background))
                     <div style="background-image: url({{asset($background->image)}});
                         background-size: cover;
@@ -163,7 +165,7 @@
 
 
         <section>
-            <div class="col-12 d-flex container my-5" data-aos="fade-up">
+            <div class="col-12 d-flex container my-5" data-aos="fade-up" id="contacto">
                 <div class="col-md-3 d-md-block d-none">
                     @if(isset($contact))
                         <div class="contact-container">
