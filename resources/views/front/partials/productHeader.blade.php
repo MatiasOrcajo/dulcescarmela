@@ -2,7 +2,7 @@
 <div class="w-100">
     <div class="product-background position-absolute" style="z-index: 9"></div>
     <div class="container">
-        <div class="m-0 mt-md-3 mb-5 p-0 d-flex justify-content-center align-items-center">
+        <div class="m-0 mt-md-3 mt-2 mb-5 p-0 d-flex justify-content-center align-items-center">
             <div class="d-flex justify-content-center align-items-center">
                 <a class="d-flex justify-content-center align-items-center" href="{{route('front.index')}}">
                     <img src="{{$logo->image}}" alt="" width="150" height="150" style="z-index: 9999">

@@ -43,6 +43,14 @@
         menu_to_display.classList.add('slide-menu-hide');
         menu_to_display.classList.remove('slide-menu');
     })
+
+    document.querySelectorAll('.nav-item').forEach((el) => {
+        el.addEventListener('click', () => {
+            const menu_to_display = document.getElementById('menu_to_display');
+            menu_to_display.classList.add('slide-menu-hide');
+            menu_to_display.classList.remove('slide-menu');
+        })
+    })
 </script>
 
 <style>

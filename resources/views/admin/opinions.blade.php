@@ -65,8 +65,8 @@
                 <span>Imagen de fondo:</span>
                 @if($background)
                     <div class="col-md-4 mt-3 pl-0 mb-3">
-                        <img src="{{asset($background->image)}}" alt="" style="max-width: 100%;">    
-                    </div>                
+                        <img src="{{asset($background->image)}}" alt="" style="max-width: 100%;">
+                    </div>
                 @endif
 
                 <form action="{{route('admin.opinions.addBackground')}}" method="POST" enctype="multipart/form-data">
@@ -79,7 +79,7 @@
                     </button>
                 </form>
             </div>
-            
+
             @forelse ($opinions as $opinion)
             <div class="col-md-4 mt-3 pl-0 contenedor-slider-admin">
                 <div class="card">
@@ -102,7 +102,7 @@
                 </button>
 
                 {{-- modal para editar --}}
-                
+
                 <div class="modal fade" id="modalEditar{{$opinion->id}}" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -126,14 +126,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Contenido</label>
-                                    <textarea name="content" id="content" class="w-100" rows="20">{{$opinion->content}}</textarea>
+                                    <textarea name="opinion_content" id="content" class="w-100" rows="20">{{$opinion->content}}</textarea>
                                 </div>
                                 <div class="form-group mt-5">
                                     <img src="{{asset($opinion->image)}}" alt="" style="height: 150px; width: auto;" class="mb-4">
                                     <br>
                                     <input type="file" name="image">
                                 </div>
-        
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
@@ -159,7 +159,7 @@
                                 <form action="{{route('admin.eliminarOpinion', $opinion->id)}}" method="POST" enctype="multipart/form-data">
                                     @method('DELETE')
                                     @csrf
-                                    
+
                                     <h3>¿Segura que deseas eliminar la opinión?</h3>
 
                                     <div class="modal-footer p-0 mt-4">
@@ -208,7 +208,7 @@
                         <div class="form-group">
                             <label for="content">Texto</label>
                             <br>
-                            <textarea name="content" id="content" class="w-100" rows="20">{{ old('content') }}</textarea>
+                            <textarea name="opinion_content" id="content" class="w-100" rows="20">{{ old('content') }}</textarea>
                         </div>
                         <div class="form-group mt-5">
                             <input type="file" name="image">

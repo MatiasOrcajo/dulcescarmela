@@ -240,6 +240,10 @@ return [
             'icon' => 'fas fa-fw fa-home',
             'submenu' => [
                 [
+                    'text' => 'Inicio',
+                    'url'  => '/admin/dashboard',
+                ],
+                [
                     'text' => 'Slider home',
                     'url'  => '/admin/home-slider',
                 ],

@@ -1,7 +1,7 @@
-<div class="container-fluid" style="transform: translateY(200px)">
+<div class="container-fluid" style="{{Route::is('front.showProduct') || Route::is('front.products') ? 'transform: translateY(150px)' : ''}}">
     <div class="row">
         <div class="footer-container py-5">
-            <div class="col-md-12 d-flex justify-content-center align-items-center">
+            <div class="col-md-12 d-flex flex-wrap justify-content-center align-items-center">
                 <div class="col-md-3 footer-logo d-flex justify-content-center align-items-center flex-column">
                     <img src="{{$logo->image}}">
                     <div class="d-flex justify-content-center align-items-center">

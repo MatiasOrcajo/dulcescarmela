@@ -39,7 +39,26 @@
 
 .nosotras-section img{
     max-width: 500px;
+    width: 375px;
 }
+
+@media(max-width: 900px){
+    .nosotras-section h2{
+
+        color: #cd9b33 !important;
+        font-family: 'KaushanScript-Regular', serif;
+        font-size: 50px;
+        transform: translateY(0px);
+    }
+
+    .nosotras-section img{
+        max-width: 80%;
+        width: 80%;
+        height: auto;
+    }
+}
+
+
 
 .nosotras-text p strong{
     color: #59C3A6 !important;
@@ -124,6 +143,7 @@
 
 .opinion-container{
     background-color: rgba(255, 255, 255, 0.9);
+    width: 50%;
 }
 
 .swiper-pagination-bullets-dynamic {
@@ -143,7 +163,7 @@
     /* margin-bottom: 100px; */
     position: absolute;
     top: 0;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
 .opinion-stars i{
@@ -195,6 +215,26 @@
 .contadores{
     background: #f7f7f7;
     padding: 60px 65px 30px;
+}
+
+
+@media(max-width: 900px){
+    .background-testimonios{
+        height: 593px;
+        width: 100%;
+    }
+
+    .opinion-text p{
+        font-size: 21px;
+        line-height: 1.8em;
+        color: #3c3c3c;
+        font-family: 'Lora', serif;
+    }
+
+    .opinion-container{
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 100%;
+    }
 }
 
 

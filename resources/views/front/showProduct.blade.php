@@ -23,7 +23,7 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
-                <div thumbsSlider="" class="mt-0 swiper mySwiper">
+                <div thumbsSlider="" class="thumbs mt-0 swiper mySwiper">
                     <div class="swiper-wrapper">
                         @foreach($product->getProductImages as $image)
                             <div class="swiper-slide">
@@ -35,13 +35,15 @@
             </div>
 
             <div class="col-lg-6 position-relative product-details">
-                <h1 class="product-title text-uppercase">{{$product->title}}</h1>
-                <div class="position-absolute mt-5" style="top: 0">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                <div class="position-relative">
+                    <h1 class="product-title text-uppercase">{{$product->title}}</h1>
+                    <div class="position-absolute mt-md-0" style="">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
                 </div>
                 <div class="mt-5"></div>
 
@@ -225,6 +227,27 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+
+        @media(max-width: 900px){
+            .image-column{
+                max-height: 340px;
+                height: 750px;
+            }
+
+            .product-container {
+                margin-top: 15px !important;
+                margin-bottom: 0px!important;
+            }
+
+            .product-details{
+                transform: translateY(150px);
+            }
+
+            .thumbs{
+                transform: translateY(-60px);
+            }
         }
     </style>
 

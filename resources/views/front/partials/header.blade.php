@@ -17,7 +17,7 @@
 </div>
 <!-- top banner -->
 
-<div class="col-12 d-flex justify-content-between align-items-center position-absolute top-banner" style="top: 0;">
+<div class="col-12 d-flex justify-content-between align-items-center position-absolute top-banner d-md-flex d-none" style="top: 0;">
     <span class="d-block ps-5">Aprovechá las ofertas de Dulces Carmela por tiempo limitado</span>
     <a href="">
         <button class="btn d-block me-5">Ver Productos</button>

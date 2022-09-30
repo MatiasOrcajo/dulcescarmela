@@ -10,7 +10,7 @@
 
     <div class="container-fluid mt-5">
         <div class="row">
-            <div class="col-md-2 mt-5 ps-5">
+            <div class="col-md-2 mt-5 ps-md-5">
                 <aside class="categorias-aside">
 
                     <div style="border-bottom: 1px solid #214ABF;" class="pb-3">
@@ -39,10 +39,10 @@
                 </aside>
             </div>
 
-            <div class="col-md-10 mt-5 d-flex flex-wrap justify-content-between align-items-center"
+            <div class="col-md-10 mt-5 d-flex flex-wrap justify-content-md-between justify-content-center align-items-center"
                  id="products_container">
                 @foreach($products as $product)
-                    <div class="product-list-container text-center d-flex flex-column">
+                    <div class="product-list-container text-center d-flex flex-column mb-md-0 mb-5">
                         <img src="{{$product->cover_photo}}" alt="product_image">
                         <h3 class="d-block mt-3 mb-2">
                             {{$product->title}}
@@ -96,7 +96,7 @@
 
         .product-list-container {
             width: 280px;
-            height: 360px;
+            height: 430px;
             border: 1px solid #e0e0e0;
             box-shadow: 2px 5px 8px -6px #000000;
             -webkit-box-shadow: 2px 5px 8px -6px #000000;
@@ -167,7 +167,7 @@
                     for (product of data) {
                         $('#products_container').append(`
 
-                         <div class="product-list-container text-center d-flex flex-column">
+                         <div class="product-list-container text-center d-flex flex-column mb-md-0 mb-5">
                             <img src="${getBaseURLForImages() + product.cover}" alt="product_image">
                             <h3 class="d-block mt-3 mb-2">
                                 ${product.title}
@@ -176,7 +176,7 @@
                                 ${product.category}
                             </span>
                             <a href="${getBaseURL() + 'producto/' + product.slug}" target="_blank">
-                                <button class="btn rounded-pill">
+                                <button class="btn rounded-pill mt-5">
                                     VER
                                 </button>
                             </a>

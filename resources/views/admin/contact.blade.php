@@ -2,10 +2,10 @@
 
 <link rel="stylesheet" href="{{asset('css/admin/homeSliders.css')}}">
 
-@section('title', 'Contadores')
+@section('title', 'Contacto')
 
 @section('content_header')
-    <h1>Contadores</h1>
+    <h1>Contacto</h1>
 
 @stop
 

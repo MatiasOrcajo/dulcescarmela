@@ -24,7 +24,7 @@ class OpinionsController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name'    => 'string|required',
-            'content' => 'required',
+            'opinion_content' => 'required',
             'image'   => 'required|mimes:png,jpg,jpeg'
         ]);
 
@@ -39,7 +39,7 @@ class OpinionsController extends Controller
 
         $opinion = Opinion::create([
             'name'    => $request->name,
-            'content' => $request->content,
+            'content' => $request->opinion_content,
             'image'   => $url,
             'order'   => $request->order
         ]);
@@ -61,7 +61,7 @@ class OpinionsController extends Controller
         $opinion->update([
             'name'    => $request->name,
             'order'   => $request->order,
-            'content' => $request->content,
+            'content' => $request->opinion_content,
             'image'   => $url
         ]);
 
@@ -71,7 +71,7 @@ class OpinionsController extends Controller
     public function deleteOpinion(Opinion $opinion)
     {
         $opinion->delete();
-        
+
         return redirect()->back()->with('success', 'deleted');
     }
 
@@ -81,7 +81,7 @@ class OpinionsController extends Controller
             $validator = Validator::make($request->all(),[
                 'image'   => 'required|mimes:png,jpg,jpeg'
             ]);
-    
+
             if($validator->fails()){
                 return redirect()->back()
                                  ->withErrors($validator)
@@ -103,7 +103,7 @@ class OpinionsController extends Controller
 
             return redirect()->back()->with('success', 'background_added');
         }
-        
+
         $validator = Validator::make($request->all(),[
             'image'   => 'required|mimes:png,jpg,jpeg'
         ]);
