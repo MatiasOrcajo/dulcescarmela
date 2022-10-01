@@ -9,13 +9,22 @@
                 <div class="swiper-wrapper">
                     @foreach ($sliders as $slider)
                         <div class="swiper-slide d-flex align-items-center justify-content-center position-relative">
-                            <img src="{{asset($slider->image)}}" alt="">
+                            <div class="swiper-principal" style="background-image: url({{asset($slider->image)}});
+                                        background-position: center center;
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                        width: 100%;
+                                        height: 100%;
+                            ">
+
+                            </div>
+                            <!--<img src="{{asset($slider->image)}}" alt="">-->
                             <div class="position-absolute image-text ms-5" style="left: 0; top: 50%; ">
                                 <span>Todos los días hacemos</span>
                                 <h2>{{$slider->texto}}</h2>
 
                                 <a href="{{route('front.showProduct', $slider->product()->slug)}}">
-                                    <button class="btn rounded-pill mt-4">
+                                    <button class="btn rounded-pill" style="transform: translateY(100px)">
                                         Comprar ahora
                                     </button>
                                 </a>
