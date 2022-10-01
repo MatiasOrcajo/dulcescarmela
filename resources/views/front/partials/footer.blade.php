@@ -1,24 +1,28 @@
-<div class="container-fluid" style="{{Route::is('front.showProduct') || Route::is('front.products') ? 'transform: translateY(150px)' : ''}}">
+<div class="container-fluid"
+     style="{{Route::is('front.showProduct') || Route::is('front.products') ? 'transform: translateY(250px)' : ''}}">
     <div class="row">
         <div class="footer-container py-5">
             <div class="col-md-12 d-flex flex-wrap justify-content-center align-items-center">
                 <div class="col-md-3 footer-logo d-flex justify-content-center align-items-center flex-column">
                     <img src="{{$logo->image}}">
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="" target="_blank">
+                        <a target="_blank" href="{{$social->facebook}}">
                             <div class="social-container me-3 d-flex justify-content-center align-items-center p-2">
-
                                 <i class="fa-brands fa-facebook-f"></i>
-
                             </div>
                         </a>
-                        <a href="" target="_blank">
+                        <a target="_blank" href="{{$social->facebook}}">
                             <div class="social-container me-3 d-flex justify-content-center align-items-center p-2">
-
                                 <i class="fa-brands fa-instagram"></i>
-
                             </div>
                         </a>
+                        @if($social->tiktok)
+                            <a target="_blank" href="{{$social->tiktok}}">
+                                <div class="social-container me-3 d-flex justify-content-center align-items-center p-2">
+                                    <i class="fa-brands fa-tiktok"></i>
+                                </div>
+                            </a>
+                        @endif
                     </div>
                 </div>
 
@@ -26,7 +30,7 @@
                     <div class="text-center">
                         <h3>Contacta con nosotras</h3>
                         <br>
-                        <span>BIGLIERI 3060, LANÚS</span>
+                        <span>{{$social->address}}</span>
                         <br>
                         <a style="color: #214abf" href="https://wa.me/{{$whatsapp->number}}">
                             <span>+54 {{$whatsapp->number}}</span>

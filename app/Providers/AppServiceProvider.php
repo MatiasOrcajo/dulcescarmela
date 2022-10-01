@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Logo;
+use App\Models\SocialMedia;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +30,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $logo = Logo::first();
             $view->with('logo', $logo);
+        });
+
+        view()->composer('*', function ($view) {
+            $social = SocialMedia::first();
+            $view->with('social', $social);
         });
     }
 }

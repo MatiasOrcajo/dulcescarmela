@@ -185,7 +185,7 @@
                     <div class="contact-container d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3 text-center">
                             <h3 class="d-block mb-3">NUESTRA COCINA</h3>
-                            <h4 class="d-block mb-4">Biglieri 3060, Lanús</h4>
+                            <h4 class="d-block mb-4">{{$social->address}}</h4>
                             <span><i class="fa-brands fa-whatsapp"></i> @if(isset($whatsapp))
                                     {{$whatsapp->number}}
                                 @endif</span>
@@ -202,10 +202,7 @@
                 </div>
                 <div class="col-md-3 d-md-block d-none">
                     <div class="contact-container">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d669.9006415950307!2d-58.414326426637835!3d-34.70576021867833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcccfe2d1fb757%3A0xd5462002700a02db!2sCalle%20Dr.%20Yolivan%20Alberto%20Biglieri%203060%2C%20B1825DWP%20Lan%C3%BAs%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1656870077818!5m2!1ses!2sar"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        {!! $social->maps !!}
                     </div>
                 </div>
             </div>
@@ -223,7 +220,7 @@
                     <div class="contact-container d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3 text-center">
                             <h3 class="d-block mb-3">NUESTRA COCINA</h3>
-                            <h4 class="d-block mb-4">Biglieri 3060, Lanús</h4>
+                            <h4 class="d-block mb-4">{{$social->address}}</h4>
                             <span><i class="fa-brands fa-whatsapp"></i> @if(isset($whatsapp))
                                     {{$whatsapp->number}}
                                 @endif</span>
@@ -240,10 +237,7 @@
                 </div>
                 <div class="col-md-3 d-md-none d-block">
                     <div class="contact-container">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d669.9006415950307!2d-58.414326426637835!3d-34.70576021867833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcccfe2d1fb757%3A0xd5462002700a02db!2sCalle%20Dr.%20Yolivan%20Alberto%20Biglieri%203060%2C%20B1825DWP%20Lan%C3%BAs%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1656870077818!5m2!1ses!2sar"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        {!! $social->maps !!}
                     </div>
                 </div>
             </div>

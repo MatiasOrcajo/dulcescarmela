@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\SocialMedia;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use \App\Http\Requests\StoreContactRequest;
 
@@ -13,8 +15,43 @@ class ContactController extends Controller
     public function index()
     {
         $contactImages = Contact::first();
+        $socials       = SocialMedia::first();
+        $instagram     = '';
+        $facebook      = '';
+        $tiktok        = '';
+        $address       = '';
+        $maps          = '';
 
-        return view('admin.contact', compact('contactImages'));
+        if(isset($socials)){
+            $instagram     = $socials->instagram;
+            $facebook      = $socials->facebook;
+            $tiktok        = $socials->tiktok;
+            $address       = $socials->address;
+            $maps          = $socials->maps;
+        }
+
+        return view('admin.contact', compact('contactImages', 'instagram', 'facebook', 'tiktok', 'address', 'maps'));
+    }
+
+    public function addSocialMedia(Request $request)
+    {
+        $social = SocialMedia::first();
+
+        if(isset($social)){
+            $social->update($request->all());
+            $social->maps = str_replace(['width="600"', 'height="450"'], ['width="100%"', 'height="100%"'], $social->maps);
+            $social->save();
+            return back()->with('success', 'SocialEdited');
+        }
+
+        if(!isset($social)){
+            SocialMedia::create($request->all());
+            $social->maps = str_replace(['width="600"', 'height="450"'], ['width="100%"', 'height="100%"'], $social->maps);
+            $social->save();
+            return back()->with('success', 'SocialAdded');
+        }
+
+
     }
 
     public function addContact(StoreContactRequest $request)

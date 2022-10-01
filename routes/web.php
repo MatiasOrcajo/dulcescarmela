@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::get('contacto', 'Admin\ContactController@index')->name('admin.contacto');
             Route::post('contacto/subir', 'Admin\ContactController@addContact')->name('admin.subirContacto');
             Route::put('contacto/editar', 'Admin\ContactController@editContact')->name('admin.editarContacto');
+            Route::post('contacto/addSocialMedia', 'Admin\ContactController@addSocialMedia')->name('admin.socialMedia');
 
             // agregar o cambiar imagen de la marca
 
